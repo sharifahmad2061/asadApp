@@ -13,7 +13,7 @@
 <body>
     <main class="container">
         <h1>Identification of Performance Indicators for Sustainable Cement Manufacturing</h1>
-
+        <hr>
         <p>&ldquo;Assessment of industrial sustainability is an important step towards converting the theoretical goal of sustainable
             development into practice. Sustainability is defined as &ldquo;development that meets the needs of the present
             without compromising the ability of future generations to meet their own needs&rdquo; (World Commission on Environment
@@ -47,17 +47,21 @@
         <h4>2. What is your annual production capacity (Tonnes/yr)
             <sup>*</sup>
         </h4>
-        <form action="">
+        <form action="" class="needs-validation" novalidate>
             <div class="form-group">
-                <input id="cem-cap" type="text" class="form-control">
+                <input id="cem-cap" type="text" class="form-control" required>
+                <div class="invalid-feedback">
+                    cement capacity is required
+                </div>
             </div>
         </form>
-        <button id="mp-nxt" class="btn btn-outline-primary btn-lg">Next</button>
+        <button id="mp-nxt" class="btn btn-outline-primary btn-block btn-lg">Next</button>
     </main>
 
     <script src="assets/jquery-3.3.1.min.js"></script>
     <script src="assets/popper.min.js"></script>
     <script src="assets/bootstrap.min.js"></script>
+    <script src="homepage.js"></script>
 </body>
 
 </html>

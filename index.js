@@ -13,7 +13,7 @@ let win
 
 function createWindow() {
     // Create the browser window.
-    win = new BrowserWindow({ width: 1000, height: 1000 })
+    win = new BrowserWindow({ width: 1400, height: 1200 })
 
     //hide the default menu
     win.setMenu(null)
