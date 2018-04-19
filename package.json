@@ -12,7 +12,5 @@
   "dependencies": {
     "electron": "^1.8.4"
   },
-  "devDependencies": {
-    "electron-reload": "^1.2.2"
-  }
+  "devDependencies": {}
 }
