@@ -1,8 +1,8 @@
 const path = require("path");
 const fs = require("fs");
 
-const economicEffectOnEnviornmental = 0.313686673;
-const socialEffectOnEnviornmental = 0.277982026;
+const economicEffectOnEnvironmental = 0.313686673;
+const socialEffectOnEnvironmental = 0.277982026;
 
 let environmentalData = {
     BenchmarkYearValues: [],
@@ -96,7 +96,7 @@ document.querySelector('#btn-sbm').addEventListener('click', () => {
     environmentalData['maxNormalizedKPIValuesAchieved'] = maxNormalizedKPIValuesAchieved;
 
     // console.log(environmentalData);
-    fs.writeFileSync(path.join(__dirname, 'data/environmental.json'), JSON.stringify(environmentalData, null, 4));
-
-    window.location.replace("socialInd.html");
+    fs.writeFile(path.join(__dirname, 'data/environmental.json'), JSON.stringify(environmentalData, null, 4),()=>{
+        window.location.replace("socialInd.html");
+    });
 });

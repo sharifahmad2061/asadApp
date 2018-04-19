@@ -20,9 +20,8 @@ mp_nxt.addEventListener("click", () => {
         data['capacity'] = document.querySelector("#cem-cap").value;
         // console.log(data);
 
-        fs.writeFileSync(path.join(__dirname, 'data/user_data.json'),JSON.stringify(data,null,4));
-
-        window.location.replace(path.join(__dirname,"economicInd.html"));
-        // return;
+        fs.writeFile(path.join(__dirname, 'data/user_data.json'),JSON.stringify(data,null,4),()=>{
+            window.location.replace(path.join(__dirname,"economicInd.html"));
+        });
     }
 });

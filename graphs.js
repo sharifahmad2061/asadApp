@@ -2,10 +2,11 @@ const path = require('path');
 const fs = require('fs');
 
 const economic_data = JSON.parse(fs.readFileSync(path.join(__dirname, 'data/economic.json'), 'utf8'));
-const environment_data = JSON.parse(fs.readFileSync(path.join(__dirname, 'data/environment.json'), 'utf8'));
+const environment_data = JSON.parse(fs.readFileSync(path.join(__dirname, 'data/environmental.json'), 'utf8'));
 const social_data = JSON.parse(fs.readFileSync(path.join(__dirname, 'data/social.json'), 'utf8'));
 
 let ctx = document.querySelector("#myChart").getContext('2d');
+let chart;
 
 let ra_btn_form = document.querySelector('#ra-btn-form');
 let option;
@@ -20,8 +21,11 @@ ra_btn_form.addEventListener('change', () => {
     }
 });
 
-function draw_economic_data(data, ctx) {
-    let myChart = new Chart(ctx, {
+function draw_economic_data(data, ctx, chart) {
+    if(chart){
+        chart.destroy();
+    }
+    chart = new Chart(ctx, {
         type: 'bar',
         data: {
             labels: ["X1", "X2", "X3", "X4", "X5", "X6", "X7", "X8", "X9", "X10", "X11", "X12", "X13", "X14"],
@@ -49,8 +53,11 @@ function draw_economic_data(data, ctx) {
     });
 }
 
-function draw_environment_data(data, ctx) {
-    let myChart = new Chart(ctx, {
+function draw_environment_data(data, ctx, chart) {
+    if(chart){
+        chart.destroy();
+    }
+    chart = new Chart(ctx, {
         type: 'bar',
         data: {
             labels: ["X15", "X16", "X17", "X18", "X18", "X19", "X20", "X21", "X22", "X23", "X24", "X25"],
@@ -78,8 +85,11 @@ function draw_environment_data(data, ctx) {
     });
 }
 
-function draw_social_data(data, ctx) {
-    let myChart = new Chart(ctx, {
+function draw_social_data(data, ctx, chart) {
+    if(chart){
+        chart.destroy();
+    }
+    chart = new Chart(ctx, {
         type: 'bar',
         data: {
             labels: ["X26", "X27", "X28", "X29", "X30", "X31", "X32", "X33", "X34", "X35", "X36", "X37", "X38"],

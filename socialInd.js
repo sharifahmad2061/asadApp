@@ -2,7 +2,7 @@ const path = require("path");
 const fs = require("fs");
 
 const economicEffectOnSocial = 0.29200036;
-const enviornmentalEffectOnSocial = 0.269084488;
+const environmentalEffectOnSocial = 0.269084488;
 
 let socialData = {
     BenchmarkYearValues: [],
@@ -25,7 +25,7 @@ let socialEigenValues = [
 ]
 
 
-const overallsocialEigenValue = 0.32527942;
+const overallSocialEigenValue = 0.32527942;
 
 
 let loopControl;
@@ -104,7 +104,7 @@ document.querySelector('#btn-sbm').addEventListener('click', () => {
     socialData['maxNormalizedKPIValuesAchieved'] = maxNormalizedKPIValuesAchieved;
 
     // console.log(socialData);
-    fs.writeFileSync(path.join(__dirname, 'data/social.json'), JSON.stringify(socialData, null, 4));
-
-    window.location.replace("graphs.html");
+    fs.writeFile(path.join(__dirname, 'data/social.json'), JSON.stringify(socialData, null, 4),()=>{
+        window.location.replace("graphs.html");
+    });
 });
