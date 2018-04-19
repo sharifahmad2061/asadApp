@@ -83,6 +83,6 @@ document.querySelector('#btn-sbm').addEventListener('click', () => {
     // console.log(economicData);
     fs.writeFileSync(path.join(__dirname, 'data/economic.json'), JSON.stringify(economicData, null, 4));
     
-    window.location.href = "environmentInd.html";
+    window.location.replace("environmentInd.html");
 });
 

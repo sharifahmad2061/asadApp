@@ -106,5 +106,5 @@ document.querySelector('#btn-sbm').addEventListener('click', () => {
     // console.log(socialData);
     fs.writeFileSync(path.join(__dirname, 'data/social.json'), JSON.stringify(socialData, null, 4));
 
-    window.location.href = "graphs.html";
+    window.location.replace("graphs.html");
 });

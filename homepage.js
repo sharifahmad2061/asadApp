@@ -22,6 +22,7 @@ mp_nxt.addEventListener("click", () => {
 
         fs.writeFileSync(path.join(__dirname, 'data/user_data.json'),JSON.stringify(data,null,4));
 
-        window.location.href = "economicInd.html";
+        window.location.replace(path.join(__dirname,"economicInd.html"));
+        // return;
     }
 });

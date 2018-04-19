@@ -98,5 +98,5 @@ document.querySelector('#btn-sbm').addEventListener('click', () => {
     // console.log(environmentalData);
     fs.writeFileSync(path.join(__dirname, 'data/environmental.json'), JSON.stringify(environmentalData, null, 4));
 
-    window.location.href = "socialInd.html";
+    window.location.replace("socialInd.html");
 });
