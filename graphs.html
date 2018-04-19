@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>data visualization</title>
+
+    <link rel="stylesheet" href="assets/bootstrap.min.css">
+</head>
+
+<body>
+    <main class="container">
+        <h3 class="text-center">Data Disualization</h3>
+        <hr>
+        <form action="" id="ra-btn-form">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="graph-type" value="economic">
+                <label class="form-check-label">Economic Indicators</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="graph-type" value="environmental">
+                <label class="form-check-label">Environmental Indicators</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="graph-type" value="social">
+                <label class="form-check-label">Social Indicators</label>
+            </div>
+        </form>
+        <canvas id="myChart" width="800" height="500"></canvas>
+        <script src="assets/Chart.min.js"></script>
+        <script src="graphs.js"></script>
+    </main>
+</body>
+
+</html>
