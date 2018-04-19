@@ -12,11 +12,11 @@ mp_nxt.addEventListener("click", () => {
         return;
     }
     else{
-        data['name'] = document.querySelector(".form-group>input[name=name]").value;
-        data['designation'] = document.querySelector(".form-group>input[name=designation]").value;
-        data['industry'] = document.querySelector(".form-group>input[name=industry]").value;
-        data['address'] = document.querySelector(".form-group>input[name=address]").value;
-        data['contact'] = document.querySelector(".form-group>input[name=contact]").value;
+        data['name'] = document.querySelector("input[name=name]").value;
+        data['designation'] = document.querySelector("input[name=designation]").value;
+        data['industry'] = document.querySelector("input[name=industry]").value;
+        data['address'] = document.querySelector("input[name=address]").value;
+        data['contact'] = document.querySelector("input[name=contact]").value;
         data['capacity'] = document.querySelector("#cem-cap").value;
         // console.log(data);
 
