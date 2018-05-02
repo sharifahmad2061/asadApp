@@ -11,7 +11,7 @@ mp_nxt.addEventListener("click", () => {
         form1.classList.add('was-validated');
         return;
     }
-    else{
+    else {
         data['name'] = document.querySelector("input[name=name]").value;
         data['designation'] = document.querySelector("input[name=designation]").value;
         data['industry'] = document.querySelector("input[name=industry]").value;
@@ -20,8 +20,14 @@ mp_nxt.addEventListener("click", () => {
         data['capacity'] = document.querySelector("#cem-cap").value;
         // console.log(data);
 
-        fs.writeFile(path.join(__dirname, 'data/user_data.json'),JSON.stringify(data,null,4),()=>{
-            window.location.replace(path.join(__dirname,"economicInd.html"));
+        fs.writeFile(path.join(__dirname, 'data/user_data.json'), JSON.stringify(data, null, 4), () => {
+            let el = document.querySelectorAll("form");
+            for (i = 0; i < el.length; ++i) {
+                if (el[i].checkValidity() === false) {
+                    return;
+                }
+            }
+            window.location.replace(path.join(__dirname, "economicInd.html"));
         });
     }
 });

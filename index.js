@@ -19,13 +19,13 @@ function createWindow() {
 
     // and load the index.html of the app.
     win.loadURL(url.format({
-        pathname: path.join(__dirname, 'homepage.html'),
+        pathname: path.join(__dirname, 'economicInd.html'),
         protocol: 'file:',
         slashes: true
     }))
 
     // Open the DevTools.
-    // win.webContents.openDevTools()
+    win.webContents.openDevTools()
 
     // Emitted when the window is closed.
     win.on('closed', () => {

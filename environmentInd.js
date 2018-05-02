@@ -96,7 +96,13 @@ document.querySelector('#btn-sbm').addEventListener('click', () => {
     environmentalData['maxNormalizedKPIValuesAchieved'] = maxNormalizedKPIValuesAchieved;
 
     // console.log(environmentalData);
-    fs.writeFile(path.join(__dirname, 'data/environmental.json'), JSON.stringify(environmentalData, null, 4),()=>{
+    fs.writeFile(path.join(__dirname, 'data/environmental.json'), JSON.stringify(environmentalData, null, 4), () => {
+        let el = document.querySelectorAll("form");
+        for (i = 0; i < el.length; ++i) {
+            if (el[i].checkValidity() === false) {
+                return;
+            }
+        }
         window.location.replace("socialInd.html");
     });
 });

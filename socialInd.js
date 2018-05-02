@@ -52,7 +52,7 @@ document.querySelector('#btn-sbm').addEventListener('click', () => {
         if (i < 6) {
             targetAchievedFromBaselineYear.push(socialData['BenchmarkYearValues'][i] - socialData['CurrentYearValues'][i]);
         }
-        else if(i > 6 && i < 9){
+        else if (i > 6 && i < 9) {
             targetAchievedFromBaselineYear.push(socialData['CurrentYearValues'][i] - socialData['BenchmarkYearValues'][i]);
         }
         else {
@@ -61,10 +61,10 @@ document.querySelector('#btn-sbm').addEventListener('click', () => {
     }
 
     for (let i = 0; i < loopControl; i++) {
-        if(i < 10){
+        if (i < 10) {
             percentageOfTargetValueAchieved.push(targetAchievedFromBaselineYear[i] / Math.abs(socialData['TargetYearValues'][i] - socialData['BenchmarkYearValues'][i]));
-        }else{
-            percentageOfTargetValueAchieved.push(socialData['CurrentYearValues'][i]/socialData['TargetYearValues'][i]);
+        } else {
+            percentageOfTargetValueAchieved.push(socialData['CurrentYearValues'][i] / socialData['TargetYearValues'][i]);
         }
     }
 
@@ -104,7 +104,13 @@ document.querySelector('#btn-sbm').addEventListener('click', () => {
     socialData['maxNormalizedKPIValuesAchieved'] = maxNormalizedKPIValuesAchieved;
 
     // console.log(socialData);
-    fs.writeFile(path.join(__dirname, 'data/social.json'), JSON.stringify(socialData, null, 4),()=>{
+    fs.writeFile(path.join(__dirname, 'data/social.json'), JSON.stringify(socialData, null, 4), () => {
+        let el = document.querySelectorAll("form");
+        for (i = 0; i < el.length; ++i) {
+            if (el[i].checkValidity() === false) {
+                return;
+            }
+        }
         window.location.replace("graphs.html");
     });
 });

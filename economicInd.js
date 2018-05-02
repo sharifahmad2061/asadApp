@@ -25,6 +25,7 @@ let normalizedKPIValuesAchieved = [];
 const fields = document.querySelectorAll("input[type=number]");
 
 document.querySelector('#btn-sbm').addEventListener('click', () => {
+    console.log("Iam executed");
     fields.forEach((elem, index) => {
         if (index % 3 == 0) economicData['BenchmarkYearValues'].push(elem.value);
         else if (index % 3 == 1) economicData['TargetYearValues'].push(elem.value);
@@ -81,7 +82,13 @@ document.querySelector('#btn-sbm').addEventListener('click', () => {
     economicData['maxNormalizedKPIValuesAchieved'] = maxNormalizedKPIValuesAchieved;
 
     // console.log(economicData);
-    fs.writeFile(path.join(__dirname, 'data/economic.json'), JSON.stringify(economicData, null, 4),()=>{
+    fs.writeFile(path.join(__dirname, 'data/economic.json'), JSON.stringify(economicData, null, 4), () => {
+        let el = document.querySelectorAll("form");
+        for (i = 0; i < el.length; ++i) {
+            if (el[i].checkValidity() === false) {
+                return;
+            }
+        }
         window.location.replace("environmentInd.html");
     });
 });
