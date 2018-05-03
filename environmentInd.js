@@ -107,6 +107,7 @@ document.querySelector('#btn-sbm').addEventListener('click', () => {
     environmentalData['maxNormalizedKPIValuesAchieved'] = maxNormalizedKPIValuesAchieved;
     environmentalData['sustainabilityKPIAchieved'] = KPIValuesAchieved;
     environmentalData['maxKPIAchievedValues'] = maxKPIAchievedValues;
+    environmentalData['percentageOfTargetValueAchieved'] = percentageOfTargetValueAchieved;
 
     // console.log(environmentalData);
     fs.writeFile(path.join(__dirname, 'data/environmental.json'), JSON.stringify(environmentalData, null, 4), () => {

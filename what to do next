@@ -1,2 +1,3 @@
-pie chart
+table for enhancement
 target value
+bug: selecting another radio button after total sustainability does not redraw's the canvas

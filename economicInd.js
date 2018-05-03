@@ -88,6 +88,7 @@ document.querySelector('#btn-sbm').addEventListener('click', () => {
     economicData['maxNormalizedKPIValuesAchieved'] = maxNormalizedKPIValuesAchieved;
     economicData['sustainabilityKPIAchieved'] = KPIValuesAchieved;
     economicData['maxKPIAchievedValues'] = maxKPIAchievedValues;
+    economicData['percentageOfTargetValueAchieved'] = percentageOfTargetValueAchieved;
 
     // console.log(economicData);
     fs.writeFile(path.join(__dirname, 'data/economic.json'), JSON.stringify(economicData, null, 4), () => {

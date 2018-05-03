@@ -19,63 +19,72 @@ sustainabilityKPIAchieved = economic_data['sustainabilityKPIAchieved'].concat(en
 // console.log(sustainabilityKPIAchieved);
 
 let ca_pa = document.querySelector("#ca-pa");
-let ca2_pa = document.querySelector("#ca2-pa");
 
 let ra_btn_form = document.querySelector('#ra-btn-form');
-let option;
+let gr_btn_from = document.querySelector('#gr-btn-form');
+
+let option = 'economic';
+let option2 = 'bar';
+
+gr_btn_from.addEventListener('change', () => {
+    // console.log("graph shape changed");
+    option2 = document.querySelector('input[name=graph-shape]:checked').value;
+    draw_graph(option,option2);
+});
 
 ra_btn_form.addEventListener('change', () => {
+    // console.log("graph type changed");
     option = document.querySelector("input[name=graph-type]:checked").value;
-    if (option == "economic") {
-        while (ca_pa.firstChild) {
-            ca_pa.removeChild(ca_pa.firstChild);
-            ca2_pa.removeChild(ca2_pa.firstChild);
-        }
-        let canvas = document.createElement('canvas');
-        let canvas2 = document.createElement('canvas');
-        ca_pa.appendChild(canvas);
-        ca2_pa.appendChild(canvas2);
-        let ctx = canvas.getContext('2d');
-        let ctx2 = canvas2.getContext('2d');
-        draw_economic_data(economic_data, ctx);
-        draw_economic_data_as_pie(economic_data, ctx2);
-    } else if (option == "environmental") {
-        while (ca_pa.firstChild) {
-            ca_pa.removeChild(ca_pa.firstChild);
-            ca2_pa.removeChild(ca2_pa.firstChild);            
-        }
-        let canvas = document.createElement('canvas');
-        let canvas2 = document.createElement('canvas');
-        ca_pa.appendChild(canvas);
-        ca2_pa.appendChild(canvas2);
-        let ctx = canvas.getContext('2d');
-        let ctx2 = canvas2.getContext('2d');
-        draw_environment_data(environment_data, ctx);
-        draw_economic_data_as_pie(environment_data,ctx2);
-    } else if (option == "total") {
-        while (ca_pa.firstChild) {
-            ca_pa.removeChild(ca_pa.firstChild);
-            ca2_pa.removeChild(ca2_pa.firstChild);
-        }
-        let canvas = document.createElement('canvas');
-        ca_pa.appendChild(canvas);
-        let ctx = canvas.getContext('2d');
-        draw_total_data(sustainabilityKPIAchieved, maxKPIAchievedValues, ctx);
-    } else {
-        while (ca_pa.firstChild) {
-            ca_pa.removeChild(ca_pa.firstChild);
-            ca2_pa.removeChild(ca2_pa.firstChild);
-        }
-        let canvas = document.createElement('canvas');
-        let canvas2 = document.createElement('canvas');
-        ca_pa.appendChild(canvas);
-        ca2_pa.appendChild(canvas2);
-        let ctx = canvas.getContext('2d');
-        let ctx2 = canvas2.getContext('2d');
-        draw_social_data(social_data, ctx);
-        draw_social_data_as_pie(social_data,ctx2);
-    }
+    draw_graph(option,option2);
 });
+
+function draw_graph(type, shape) {
+    let canvas;
+    let ctx;
+    switch (type) {
+        case 'economic':
+            while (ca_pa.firstChild) {
+                ca_pa.removeChild(ca_pa.firstChild);
+            }
+            canvas = document.createElement('canvas');
+            ca_pa.appendChild(canvas);
+            ctx = canvas.getContext('2d');
+            if (shape == 'bar') draw_economic_data(economic_data, ctx);
+            else if (shape == 'doughnut') draw_economic_data_as_pie(economic_data, ctx);
+            break;
+        case 'environmental':
+            while (ca_pa.firstChild) {
+                ca_pa.removeChild(ca_pa.firstChild);
+            }
+            canvas = document.createElement('canvas');
+            ca_pa.appendChild(canvas);
+            ctx = canvas.getContext('2d');
+            if (shape == 'bar') draw_environment_data(environment_data, ctx);
+            else if (shape == 'doughnut') draw_environment_data_as_pie(environment_data, ctx);
+            break;
+        case 'social':
+            while (ca_pa.firstChild) {
+                ca_pa.removeChild(ca_pa.firstChild);
+            }
+            canvas = document.createElement('canvas');
+            ca_pa.appendChild(canvas);
+            ctx = canvas.getContext('2d');
+            if (shape == 'bar') draw_social_data(social_data, ctx);
+            else if (shape == 'doughnut') draw_social_data_as_pie(social_data, ctx);
+            break;
+        case 'total':
+            while (ca_pa.firstChild) {
+                ca_pa.removeChild(ca_pa.firstChild);
+            }
+            canvas = document.createElement('canvas');
+            ca_pa.appendChild(canvas);
+            ctx = canvas.getContext('2d');
+            draw_total_data(sustainabilityKPIAchieved,maxKPIAchievedValues, ctx);
+            break;
+        default:
+            break;
+    }
+}
 
 function draw_economic_data(data, ctx) {
     new Chart(ctx, {
@@ -247,5 +256,5 @@ function draw_total_data(arr1, arr2, ctx) {
     });
 }
 
-
+draw_graph(option,option2);
 // ['#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6', '#E6B333', '#3366E6', '#999966', '#99FF99', '#B34D4D', '#80B300', '#809900', '#E6B3B3', '#6680B3', '#66991A', '#FF99E6', '#CCFF1A', '#FF1A66', '#E6331A', '#33FFCC', '#66994D', '#B366CC', '#4D8000', '#B33300', '#CC80CC', '#66664D', '#991AFF', '#E666FF', '#4DB3FF', '#1AB399', '#E666B3', '#33991A', '#CC9999', '#B3B31A', '#00E680', '#4D8066', '#809980', '#E6FF80', '#1AFF33', '#999933', '#FF3380', '#CCCC00', '#66E64D', '#4D80CC', '#9900B3', '#E64D66', '#4DB380', '#FF4D4D', '#99E6E6', '#6666FF']
