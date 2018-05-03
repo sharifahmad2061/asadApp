@@ -8,6 +8,11 @@
     <title>data visualization</title>
 
     <link rel="stylesheet" href="assets/bootstrap.min.css">
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -48,8 +53,8 @@
             <div class="col" id="ca-pa"></div>
         </div>
         <hr>
-        <h4>Economic Table</h4>
-        <table class="table table-hover" id="ec-tb">
+        <h4 class="hidden" id="ec-hdr">Economic Table</h4>
+        <table class="table table-hover hidden" id="ec-tb">
             <thead class="thead-light">
                 <tr>
                     <th>Variable</th>
@@ -138,15 +143,15 @@
                     <td></td>
                 </tr>
                 <tr>
-                    <td>14</td>
+                    <td>X14</td>
                     <td>PKR</td>
                     <td></td>
                     <td></td>
                 </tr>
-            </tbody>            
+            </tbody>
         </table>
-        <h4>Environmental Table</h4>
-        <table class="table table-hover" id="en-tb">
+        <h4 class="hidden" id="en-hdr">Environmental Table</h4>
+        <table class="table table-hover hidden" id="en-tb">
             <thead class="thead-light">
                 <tr>
                     <th>Variable</th>
@@ -224,8 +229,8 @@
                 </tr>
             </tbody>
         </table>
-        <h4>Social Table</h4>
-        <table class="table table-hover" id="sl-tb">
+        <h4 class="hidden" id="sl-hdr">Social Table</h4>
+        <table class="table table-hover hidden" id="sl-tb">
             <thead class="thead-light">
                 <tr>
                     <th>Variable</th>

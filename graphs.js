@@ -22,6 +22,14 @@ let ca_pa = document.querySelector("#ca-pa");
 
 let ra_btn_form = document.querySelector('#ra-btn-form');
 let gr_btn_from = document.querySelector('#gr-btn-form');
+let ec_tb = document.querySelector('#ec-tb').children[1];
+let en_tb = document.querySelector('#en-tb').children[1];
+let sl_tb = document.querySelector('#sl-tb').children[1];
+let ec_hdr = document.querySelector('#ec-hdr');
+let en_hdr = document.querySelector('#en-hdr');
+let sl_hdr = document.querySelector('#sl-hdr');
+
+
 
 let option = 'economic';
 let option2 = 'bar';
@@ -29,13 +37,15 @@ let option2 = 'bar';
 gr_btn_from.addEventListener('change', () => {
     // console.log("graph shape changed");
     option2 = document.querySelector('input[name=graph-shape]:checked').value;
-    draw_graph(option,option2);
+    draw_graph(option, option2);
 });
 
 ra_btn_form.addEventListener('change', () => {
     // console.log("graph type changed");
     option = document.querySelector("input[name=graph-type]:checked").value;
-    draw_graph(option,option2);
+    draw_graph(option, option2);
+    show_heading(option);
+    show_table(option);
 });
 
 function draw_graph(type, shape) {
@@ -79,7 +89,7 @@ function draw_graph(type, shape) {
             canvas = document.createElement('canvas');
             ca_pa.appendChild(canvas);
             ctx = canvas.getContext('2d');
-            draw_total_data(sustainabilityKPIAchieved,maxKPIAchievedValues, ctx);
+            draw_total_data(sustainabilityKPIAchieved, maxKPIAchievedValues, ctx);
             break;
         default:
             break;
@@ -256,5 +266,74 @@ function draw_total_data(arr1, arr2, ctx) {
     });
 }
 
-draw_graph(option,option2);
+function populate_tables() {
+    economic_data['percentageOfTargetValueAchieved'].forEach((element, index) => {
+        ec_tb.children[index].children[2].innerHTML = element;
+        ec_tb.children[index].children[3].innerHTML = element >= economic_data['benchmarkPercentage'] ? 'fine' : 'needs improvement';
+    });
+    environment_data['percentageOfTargetValueAchieved'].forEach((element, index) => {
+        en_tb.children[index].children[2].innerHTML = element;
+        en_tb.children[index].children[3].innerHTML = element >= environment_data['benchmarkPercentage'] ? 'fine' : 'needs improvement';
+    });
+    social_data['percentageOfTargetValueAchieved'].forEach((element, index) => {
+        sl_tb.children[index].children[2].innerHTML = element;
+        sl_tb.children[index].children[3].innerHTML = element >= social_data['benchmarkPercentage'] ? 'fine' : 'needs improvement';
+    });
+}
+
+function show_table(type) {
+    switch (type) {
+        case 'economic':
+            ec_tb.parentElement.classList.remove('hidden');
+            en_tb.parentElement.classList.add('hidden');
+            sl_tb.parentElement.classList.add('hidden');
+            break;
+        case 'environmental':
+            en_tb.parentElement.classList.remove('hidden');
+            ec_tb.parentElement.classList.add('hidden');
+            sl_tb.parentElement.classList.add('hidden');
+            break;
+        case 'social':
+            ec_tb.parentElement.classList.add('hidden');
+            en_tb.parentElement.classList.add('hidden');
+            sl_tb.parentElement.classList.remove('hidden');
+            break;
+        default:
+            ec_tb.parentElement.classList.add('hidden');
+            en_tb.parentElement.classList.add('hidden');
+            sl_tb.parentElement.classList.add('hidden');
+            break;
+    }
+}
+
+function show_heading(type) {
+    switch (type) {
+        case 'economic':
+            ec_hdr.classList.remove('hidden');
+            en_hdr.classList.add('hidden');
+            sl_hdr.classList.add('hidden');
+            break;
+        case 'environmental':
+            en_hdr.classList.remove('hidden');
+            ec_hdr.classList.add('hidden');
+            sl_hdr.classList.add('hidden');
+            break;
+        case 'social':
+            ec_hdr.classList.add('hidden');
+            en_hdr.classList.add('hidden');
+            sl_hdr.classList.remove('hidden');
+            break;
+        default:
+            ec_hdr.classList.add('hidden');
+            en_hdr.classList.add('hidden');
+            sl_hdr.classList.add('hidden');
+            break;
+    }
+}
+
+draw_graph(option, option2);
+populate_tables();
+show_heading(option);
+show_table(option);
+
 // ['#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6', '#E6B333', '#3366E6', '#999966', '#99FF99', '#B34D4D', '#80B300', '#809900', '#E6B3B3', '#6680B3', '#66991A', '#FF99E6', '#CCFF1A', '#FF1A66', '#E6331A', '#33FFCC', '#66994D', '#B366CC', '#4D8000', '#B33300', '#CC80CC', '#66664D', '#991AFF', '#E666FF', '#4DB3FF', '#1AB399', '#E666B3', '#33991A', '#CC9999', '#B3B31A', '#00E680', '#4D8066', '#809980', '#E6FF80', '#1AFF33', '#999933', '#FF3380', '#CCCC00', '#66E64D', '#4D80CC', '#9900B3', '#E64D66', '#4DB380', '#FF4D4D', '#99E6E6', '#6666FF']

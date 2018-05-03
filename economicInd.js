@@ -14,6 +14,8 @@ let economicEigenValues = [
 
 const overallEconomicEigenValue = 0.341476;
 
+let benchmarkPercentage;
+
 let targetAchievedFromBaselineYear = [];
 let percentageOfTargetValueAchieved = [];
 let valueAssignedForTargetAchieved = [];
@@ -23,6 +25,7 @@ let maxNormalizedKPIValuesAchieved = [];
 let normalizedKPIValuesAchieved = [];
 
 const fields = document.querySelectorAll("#main-form input[type=number]");
+const be_tb_clr = document.querySelector("input[name=be-tb-clr]");
 
 document.querySelector('#btn-sbm').addEventListener('click', () => {
     //clear the arrays
@@ -30,11 +33,15 @@ document.querySelector('#btn-sbm').addEventListener('click', () => {
     economicData['TargetYearValues'].length = 0;
     economicData['CurrentYearValues'].length = 0;
 
+
     fields.forEach((elem, index) => {
         if (index % 3 == 0) economicData['BenchmarkYearValues'].push(elem.value);
         else if (index % 3 == 1) economicData['TargetYearValues'].push(elem.value);
         else economicData['CurrentYearValues'].push(elem.value);
     });
+
+    benchmarkPercentage = be_tb_clr.value / 100;
+
     // console.log(economicData['BenchmarkYearValues'], economicData['TargetYearValues'], economicData['CurrentYearValues']);
 
     for (let i = 0; i < economicData['BenchmarkYearValues'].length; i++) {
@@ -89,6 +96,7 @@ document.querySelector('#btn-sbm').addEventListener('click', () => {
     economicData['sustainabilityKPIAchieved'] = KPIValuesAchieved;
     economicData['maxKPIAchievedValues'] = maxKPIAchievedValues;
     economicData['percentageOfTargetValueAchieved'] = percentageOfTargetValueAchieved;
+    economicData['benchmarkPercentage'] = benchmarkPercentage;
 
     // console.log(economicData);
     fs.writeFile(path.join(__dirname, 'data/economic.json'), JSON.stringify(economicData, null, 4), () => {
