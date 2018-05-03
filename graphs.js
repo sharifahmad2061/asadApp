@@ -8,17 +8,18 @@ const social_data = JSON.parse(fs.readFileSync(path.join(__dirname, 'data/social
 let maxKPIAchievedValues = [];
 let sustainabilityKPIAchieved = [];
 
-console.log(economic_data['maxKPIAchievedValues'].length);
-console.log(environment_data['maxKPIAchievedValues'].length);
-console.log(social_data['maxKPIAchievedValues'].length);
+// console.log(economic_data['maxKPIAchievedValues'].length);
+// console.log(environment_data['maxKPIAchievedValues'].length);
+// console.log(social_data['maxKPIAchievedValues'].length);
 
 maxKPIAchievedValues = economic_data['maxKPIAchievedValues'].concat(environment_data['maxKPIAchievedValues']).concat(social_data['maxKPIAchievedValues']);
 sustainabilityKPIAchieved = economic_data['sustainabilityKPIAchieved'].concat(environment_data['sustainabilityKPIAchieved']).concat(social_data['sustainabilityKPIAchieved']);
 
-console.log(maxKPIAchievedValues);
-console.log(sustainabilityKPIAchieved);
+// console.log(maxKPIAchievedValues);
+// console.log(sustainabilityKPIAchieved);
 
 let ca_pa = document.querySelector("#ca-pa");
+let ca2_pa = document.querySelector("#ca2-pa");
 
 let ra_btn_form = document.querySelector('#ra-btn-form');
 let option;
@@ -28,63 +29,51 @@ ra_btn_form.addEventListener('change', () => {
     if (option == "economic") {
         while (ca_pa.firstChild) {
             ca_pa.removeChild(ca_pa.firstChild);
+            ca2_pa.removeChild(ca2_pa.firstChild);
         }
         let canvas = document.createElement('canvas');
-        let w = document.createAttribute('width');
-        w.value = 800;
-        let h = document.createAttribute('height');
-        h.value = 500;
-        canvas.setAttributeNode(w);
-        canvas.setAttributeNode(h);
-        console.log(canvas);
+        let canvas2 = document.createElement('canvas');
         ca_pa.appendChild(canvas);
+        ca2_pa.appendChild(canvas2);
         let ctx = canvas.getContext('2d');
+        let ctx2 = canvas2.getContext('2d');
         draw_economic_data(economic_data, ctx);
+        draw_economic_data_as_pie(economic_data, ctx2);
     } else if (option == "environmental") {
         while (ca_pa.firstChild) {
             ca_pa.removeChild(ca_pa.firstChild);
+            ca2_pa.removeChild(ca2_pa.firstChild);            
         }
         let canvas = document.createElement('canvas');
-        let w = document.createAttribute('width');
-        w.value = 800;
-        let h = document.createAttribute('height');
-        h.value = 500;
-        canvas.setAttributeNode(w);
-        canvas.setAttributeNode(h);
-        console.log(canvas);
+        let canvas2 = document.createElement('canvas');
         ca_pa.appendChild(canvas);
+        ca2_pa.appendChild(canvas2);
         let ctx = canvas.getContext('2d');
+        let ctx2 = canvas2.getContext('2d');
         draw_environment_data(environment_data, ctx);
+        draw_economic_data_as_pie(environment_data,ctx2);
     } else if (option == "total") {
         while (ca_pa.firstChild) {
             ca_pa.removeChild(ca_pa.firstChild);
+            ca2_pa.removeChild(ca2_pa.firstChild);
         }
         let canvas = document.createElement('canvas');
-        let w = document.createAttribute('width');
-        w.value = 800;
-        let h = document.createAttribute('height');
-        h.value = 500;
-        canvas.setAttributeNode(w);
-        canvas.setAttributeNode(h);
-        console.log(canvas);
         ca_pa.appendChild(canvas);
         let ctx = canvas.getContext('2d');
-        draw_total_data(sustainabilityKPIAchieved,maxKPIAchievedValues,ctx);
+        draw_total_data(sustainabilityKPIAchieved, maxKPIAchievedValues, ctx);
     } else {
         while (ca_pa.firstChild) {
             ca_pa.removeChild(ca_pa.firstChild);
+            ca2_pa.removeChild(ca2_pa.firstChild);
         }
         let canvas = document.createElement('canvas');
-        let w = document.createAttribute('width');
-        w.value = 800;
-        let h = document.createAttribute('height');
-        h.value = 500;
-        canvas.setAttributeNode(w);
-        canvas.setAttributeNode(h);
-        console.log(canvas);
+        let canvas2 = document.createElement('canvas');
         ca_pa.appendChild(canvas);
+        ca2_pa.appendChild(canvas2);
         let ctx = canvas.getContext('2d');
+        let ctx2 = canvas2.getContext('2d');
         draw_social_data(social_data, ctx);
+        draw_social_data_as_pie(social_data,ctx2);
     }
 });
 
@@ -116,12 +105,30 @@ function draw_economic_data(data, ctx) {
         }
     });
 }
+function draw_economic_data_as_pie(data, ctx) {
+    new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ["X1", "X2", "X3", "X4", "X5", "X6", "X7", "X8", "X9", "X10", "X11", "X12", "X13", "X14"],
+            datasets: [{
+                label: 'normalized KPI',
+                data: data['normalizedKPIValuesAchieved'],
+                backgroundColor: ['#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6', '#E6B333', '#3366E6', '#999966', '#99FF99', '#B34D4D', '#80B300', '#809900', '#E6B3B3', '#6680B3']
+            }, {
+                label: 'max normalized KPI',
+                data: data['maxNormalizedKPIValuesAchieved'],
+                backgroundColor: ['#66991A', '#FF99E6', '#CCFF1A', '#FF1A66', '#E6331A', '#33FFCC', '#66994D', '#B366CC', '#4D8000', '#B33300', '#CC80CC', '#66664D', '#991AFF', '#E666FF'],
+            }]
+        }
+    });
+}
+
 
 function draw_environment_data(data, ctx) {
     new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ["X15", "X16", "X17", "X18", "X18", "X19", "X20", "X21", "X22", "X23", "X24", "X25"],
+            labels: ["X15", "X16", "X17", "X18", "X19", "X20", "X21", "X22", "X23", "X24", "X25"],
             datasets: [{
                 label: 'normalized KPI',
                 data: data['normalizedKPIValuesAchieved'],
@@ -142,6 +149,24 @@ function draw_environment_data(data, ctx) {
                     }
                 }]
             }
+        }
+    });
+}
+
+function draw_environment_data_as_pie(data, ctx) {
+    new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ["X15", "X16", "X17", "X18", "X19", "X20", "X21", "X22", "X23", "X24", "X25"],
+            datasets: [{
+                label: 'normalized KPI',
+                data: data['normalizedKPIValuesAchieved'],
+                backgroundColor: ["#4DB3FF", "#1AB399", "#E666B3", "#33991A", "#CC9999", "#B3B31A", "#00E680", "#4D8066", "#809980", "#E6FF80", "#1AFF33"]
+            }, {
+                label: 'max normalized KPI',
+                data: data['maxNormalizedKPIValuesAchieved'],
+                backgroundColor: ["#999933", "#FF3380", "#CCCC00", "#66E64D", "#4D80CC", "#9900B3", "#E64D66", "#4DB380", "#FF4D4D", "#99E6E6", "#6666FF"]
+            }]
         }
     });
 }
@@ -175,6 +200,24 @@ function draw_social_data(data, ctx) {
     });
 }
 
+function draw_social_data_as_pie(data, ctx) {
+    new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ["X26", "X27", "X28", "X29", "X30", "X31", "X32", "X33", "X34", "X35", "X36", "X37", "X38"],
+            datasets: [{
+                label: 'normalized KPI',
+                data: data['normalizedKPIValuesAchieved'],
+                backgroundColor: ["#4DB3FF", "#1AB399", "#E666B3", "#33991A", "#CC9999", "#B3B31A", "#00E680", "#4D8066", "#809980", "#E6FF80", "#1AFF33", "#809980", "#E6FF80", "#1AFF33"],
+            }, {
+                label: 'max normalized KPI',
+                data: data['maxNormalizedKPIValuesAchieved'],
+                backgroundColor: ["#999933", "#FF3380", "#CCCC00", "#66E64D", "#4D80CC", "#9900B3", "#E64D66", "#4DB380", "#FF4D4D", "#99E6E6", "#6666FF", "#FF4D4D", "#99E6E6", "#6666FF"],
+            }]
+        }
+    });
+}
+
 function draw_total_data(arr1, arr2, ctx) {
     new Chart(ctx, {
         type: 'bar',
@@ -183,12 +226,12 @@ function draw_total_data(arr1, arr2, ctx) {
             datasets: [{
                 label: 'sustainability KPI Achieved',
                 data: arr1,
-                backgroundColor: '#A02242',
+                backgroundColor: '#3F51B5',
                 borderWidth: 1
             }, {
                 label: 'max KPI Achieved',
                 data: arr2,
-                backgroundColor: '#AA5105',
+                backgroundColor: '#2196F3',
                 borderWidth: 1
             }]
         },
@@ -203,3 +246,6 @@ function draw_total_data(arr1, arr2, ctx) {
         }
     });
 }
+
+
+// ['#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6', '#E6B333', '#3366E6', '#999966', '#99FF99', '#B34D4D', '#80B300', '#809900', '#E6B3B3', '#6680B3', '#66991A', '#FF99E6', '#CCFF1A', '#FF1A66', '#E6331A', '#33FFCC', '#66994D', '#B366CC', '#4D8000', '#B33300', '#CC80CC', '#66664D', '#991AFF', '#E666FF', '#4DB3FF', '#1AB399', '#E666B3', '#33991A', '#CC9999', '#B3B31A', '#00E680', '#4D8066', '#809980', '#E6FF80', '#1AFF33', '#999933', '#FF3380', '#CCCC00', '#66E64D', '#4D80CC', '#9900B3', '#E64D66', '#4DB380', '#FF4D4D', '#99E6E6', '#6666FF']

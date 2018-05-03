@@ -35,7 +35,7 @@ document.querySelector('#btn-sbm').addEventListener('click', () => {
         else if (index % 3 == 1) economicData['TargetYearValues'].push(elem.value);
         else economicData['CurrentYearValues'].push(elem.value);
     });
-    console.log(economicData['BenchmarkYearValues'], economicData['TargetYearValues'], economicData['CurrentYearValues']);
+    // console.log(economicData['BenchmarkYearValues'], economicData['TargetYearValues'], economicData['CurrentYearValues']);
 
     for (let i = 0; i < economicData['BenchmarkYearValues'].length; i++) {
         if (i == 6 || i == 10 || i == 12) {
@@ -81,6 +81,8 @@ document.querySelector('#btn-sbm').addEventListener('click', () => {
         let normalizedKPIValue = (maxNormalizedKPIValuesAchieved[i] / maxKPIAchievedValues[i]) * KPIValuesAchieved[i];
         normalizedKPIValuesAchieved.push(normalizedKPIValue);
     }
+
+    // console.log(KPIValuesAchieved.length,maxKPIAchievedValues.length,maxNormalizedKPIValuesAchieved.length,normalizedKPIValuesAchieved.length);
 
     economicData['normalizedKPIValuesAchieved'] = normalizedKPIValuesAchieved;
     economicData['maxNormalizedKPIValuesAchieved'] = maxNormalizedKPIValuesAchieved;

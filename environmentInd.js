@@ -50,16 +50,17 @@ document.querySelector('#btn-sbm').addEventListener('click', () => {
         else environmentalData['CurrentYearValues'].push(elem.value);
     });
 
-    console.log(environmentalData['BenchmarkYearValues']);
+    // console.log(environmentalData['BenchmarkYearValues']);
 
     loopControl = environmentalData['BenchmarkYearValues'].length;
 
+    //ask for reason
     for (let i = 0; i < loopControl; i++) {
         if (i < 8) {
-            targetAchievedFromBaselineYear.push(environmentalData['BenchmarkYearValues'][i] - environmentalData['CurrentYearValues'][i]);
+            targetAchievedFromBaselineYear.push(Math.abs(environmentalData['BenchmarkYearValues'][i] - environmentalData['CurrentYearValues'][i]));
         }
         else {
-            targetAchievedFromBaselineYear.push(environmentalData['CurrentYearValues'][i] - environmentalData['BenchmarkYearValues'][i]);
+            targetAchievedFromBaselineYear.push(Math.abs(environmentalData['CurrentYearValues'][i] - environmentalData['BenchmarkYearValues'][i]));
         }
     }
 
@@ -78,7 +79,7 @@ document.querySelector('#btn-sbm').addEventListener('click', () => {
         let KPIAchieved = valueAssignedForTargetAchieved[i] * environmentalEigenValues[i] * 100 * overallEnvironmentalEigenValue * economicEffectOnEnvironmental * socialEffectOnEnvironmental;
         KPIValuesAchieved.push(KPIAchieved);
     }
-
+    
     let sumOfMaxKPI = 0;
 
     for (let i = 0; i < loopControl; i++) {
@@ -98,6 +99,9 @@ document.querySelector('#btn-sbm').addEventListener('click', () => {
         let normalizedKPIValue = (maxNormalizedKPIValuesAchieved[i] / maxKPIAchievedValues[i]) * KPIValuesAchieved[i];
         normalizedKPIValuesAchieved.push(normalizedKPIValue);
     }
+
+    // console.log(KPIValuesAchieved.length,maxKPIAchievedValues.length,maxNormalizedKPIValuesAchieved.length,normalizedKPIValuesAchieved.length);
+    
 
     environmentalData['normalizedKPIValuesAchieved'] = normalizedKPIValuesAchieved;
     environmentalData['maxNormalizedKPIValuesAchieved'] = maxNormalizedKPIValuesAchieved;

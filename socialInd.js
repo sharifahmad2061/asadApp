@@ -10,6 +10,7 @@ let socialData = {
     CurrentYearValues: []
 }
 let socialEigenValues = [
+    0.081269350,
     0.077915377,
     0.075593395,
     0.077915377,
@@ -56,8 +57,6 @@ document.querySelector('#btn-sbm').addEventListener('click', () => {
         else if (index % 3 == 1) socialData['TargetYearValues'].push(+ elem.checked);
         else socialData['CurrentYearValues'].push(+ elem.checked);
     });
-
-    console.log(socialData['BenchmarkYearValues']);
 
     loopControl = socialData['BenchmarkYearValues'].length;
 
@@ -112,6 +111,8 @@ document.querySelector('#btn-sbm').addEventListener('click', () => {
         let normalizedKPIValue = (maxNormalizedKPIValuesAchieved[i] / maxKPIAchievedValues[i]) * KPIValuesAchieved[i];
         normalizedKPIValuesAchieved.push(normalizedKPIValue);
     }
+
+    // console.log(KPIValuesAchieved.length,maxKPIAchievedValues.length,maxNormalizedKPIValuesAchieved.length,normalizedKPIValuesAchieved.length);    
 
     socialData['normalizedKPIValuesAchieved'] = normalizedKPIValuesAchieved;
     socialData['maxNormalizedKPIValuesAchieved'] = maxNormalizedKPIValuesAchieved;
