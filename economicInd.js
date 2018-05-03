@@ -25,7 +25,6 @@ let normalizedKPIValuesAchieved = [];
 const fields = document.querySelectorAll("input[type=number]");
 
 document.querySelector('#btn-sbm').addEventListener('click', () => {
-    console.log("Iam executed");
     fields.forEach((elem, index) => {
         if (index % 3 == 0) economicData['BenchmarkYearValues'].push(elem.value);
         else if (index % 3 == 1) economicData['TargetYearValues'].push(elem.value);

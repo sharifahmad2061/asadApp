@@ -1,5 +1,5 @@
-const path = require("path");
-const fs = require("fs");
+// const path = require("path");
+// const fs = require("fs");
 
 const economicEffectOnSocial = 0.29200036;
 const environmentalEffectOnSocial = 0.269084488;
@@ -38,6 +38,7 @@ let maxNormalizedKPIValuesAchieved = [];
 let normalizedKPIValuesAchieved = [];
 
 const fields = document.querySelectorAll("input[type=number]");
+const checks = document.querySelectorAll("input[type=checkbox]");
 
 document.querySelector('#btn-sbm').addEventListener('click', () => {
     fields.forEach((elem, index) => {
@@ -45,6 +46,14 @@ document.querySelector('#btn-sbm').addEventListener('click', () => {
         else if (index % 3 == 1) socialData['TargetYearValues'].push(elem.value);
         else socialData['CurrentYearValues'].push(elem.value);
     });
+    checks.forEach((elem, index) => {
+        console.log(elem.value);
+        if (index % 3 == 0) socialData['BenchmarkYearValues'].push(+ elem.checked);
+        else if (index % 3 == 1) socialData['TargetYearValues'].push(+ elem.checked);
+        else socialData['CurrentYearValues'].push(+ elem.checked);
+    });
+
+    console.log(socialData['BenchmarkYearValues']);
 
     loopControl = socialData['BenchmarkYearValues'].length;
 
@@ -106,13 +115,13 @@ document.querySelector('#btn-sbm').addEventListener('click', () => {
     socialData['maxKPIAchievedValues'] = maxKPIAchievedValues;
 
     // console.log(socialData);
-    fs.writeFile(path.join(__dirname, 'data/social.json'), JSON.stringify(socialData, null, 4), () => {
-        let el = document.querySelectorAll("form");
-        for (i = 0; i < el.length; ++i) {
-            if (el[i].checkValidity() === false) {
-                return;
-            }
-        }
-        window.location.replace("graphs.html");
-    });
+    // fs.writeFile(path.join(__dirname, 'data/social.json'), JSON.stringify(socialData, null, 4), () => {
+    //     let el = document.querySelectorAll("form");
+    //     for (i = 0; i < el.length; ++i) {
+    //         if (el[i].checkValidity() === false) {
+    //             return;
+    //         }
+    //     }
+    //     window.location.replace("graphs.html");
+    // });
 });

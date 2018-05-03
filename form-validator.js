@@ -3,7 +3,6 @@ window.addEventListener("load", () => {
     let btn_sbm = document.querySelector('#btn-sbm');
     // Loop over them and prevent submission
     btn_sbm.addEventListener('click', function (event) {
-        console.log("Iam also executed");
         form1.forEach(element => {
             if (element.checkValidity() === false) {
                 event.preventDefault();
