@@ -102,6 +102,8 @@ document.querySelector('#btn-sbm').addEventListener('click', () => {
 
     socialData['normalizedKPIValuesAchieved'] = normalizedKPIValuesAchieved;
     socialData['maxNormalizedKPIValuesAchieved'] = maxNormalizedKPIValuesAchieved;
+    socialData['sustainabilityKPIAchieved'] = KPIValuesAchieved;
+    socialData['maxKPIAchievedValues'] = maxKPIAchievedValues;
 
     // console.log(socialData);
     fs.writeFile(path.join(__dirname, 'data/social.json'), JSON.stringify(socialData, null, 4), () => {
