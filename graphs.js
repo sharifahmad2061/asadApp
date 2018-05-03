@@ -8,6 +8,10 @@ const social_data = JSON.parse(fs.readFileSync(path.join(__dirname, 'data/social
 let maxKPIAchievedValues = [];
 let sustainabilityKPIAchieved = [];
 
+console.log(economic_data['maxKPIAchievedValues'].length);
+console.log(environment_data['maxKPIAchievedValues'].length);
+console.log(social_data['maxKPIAchievedValues'].length);
+
 maxKPIAchievedValues = economic_data['maxKPIAchievedValues'].concat(environment_data['maxKPIAchievedValues']).concat(social_data['maxKPIAchievedValues']);
 sustainabilityKPIAchieved = economic_data['sustainabilityKPIAchieved'].concat(environment_data['sustainabilityKPIAchieved']).concat(social_data['sustainabilityKPIAchieved']);
 
@@ -179,12 +183,12 @@ function draw_total_data(arr1, arr2, ctx) {
             datasets: [{
                 label: 'sustainability KPI Achieved',
                 data: arr1,
-                backgroundColor: '#F06292',
+                backgroundColor: '#A02242',
                 borderWidth: 1
             }, {
                 label: 'max KPI Achieved',
                 data: arr2,
-                backgroundColor: '#3F51B5',
+                backgroundColor: '#AA5105',
                 borderWidth: 1
             }]
         },

@@ -36,14 +36,21 @@ let maxKPIAchievedValues = [];
 let maxNormalizedKPIValuesAchieved = [];
 let normalizedKPIValuesAchieved = [];
 
-const fields = document.querySelectorAll("input[type=number]");
+const fields = document.querySelectorAll("#main-form input[type=number]");
 
 document.querySelector('#btn-sbm').addEventListener('click', () => {
+    //clear the arrays
+    environmentalData['BenchmarkYearValues'].length = 0;
+    environmentalData['TargetYearValues'].length = 0;
+    environmentalData['CurrentYearValues'].length = 0;
+
     fields.forEach((elem, index) => {
         if (index % 3 == 0) environmentalData['BenchmarkYearValues'].push(elem.value);
         else if (index % 3 == 1) environmentalData['TargetYearValues'].push(elem.value);
         else environmentalData['CurrentYearValues'].push(elem.value);
     });
+
+    console.log(environmentalData['BenchmarkYearValues']);
 
     loopControl = environmentalData['BenchmarkYearValues'].length;
 

@@ -22,15 +22,20 @@ let maxKPIAchievedValues = [];
 let maxNormalizedKPIValuesAchieved = [];
 let normalizedKPIValuesAchieved = [];
 
-const fields = document.querySelectorAll("input[type=number]");
+const fields = document.querySelectorAll("#main-form input[type=number]");
 
 document.querySelector('#btn-sbm').addEventListener('click', () => {
+    //clear the arrays
+    economicData['BenchmarkYearValues'].length = 0;
+    economicData['TargetYearValues'].length = 0;
+    economicData['CurrentYearValues'].length = 0;
+
     fields.forEach((elem, index) => {
         if (index % 3 == 0) economicData['BenchmarkYearValues'].push(elem.value);
         else if (index % 3 == 1) economicData['TargetYearValues'].push(elem.value);
         else economicData['CurrentYearValues'].push(elem.value);
     });
-    // console.log(BenchmarkYearValues, TargetYearValues, CurrentYearValues);
+    console.log(economicData['BenchmarkYearValues'], economicData['TargetYearValues'], economicData['CurrentYearValues']);
 
     for (let i = 0; i < economicData['BenchmarkYearValues'].length; i++) {
         if (i == 6 || i == 10 || i == 12) {
