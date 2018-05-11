@@ -100,7 +100,7 @@ function draw_economic_data(data, ctx) {
     new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ["X1", "X2", "X3", "X4", "X5", "X6", "X7", "X8", "X9", "X10", "X11", "X12", "X13", "X14"],
+            labels: ["Revenue through sale of product", "increase in market share", "revenue through investment in other products", "revenue from other sources", "new export markets", "revenue through carbon credits", "op cost of cement production", "cost of borrowing money", "alternative fuels", "heat capture", "implications of physical or regulatory activity", "cost of investment in community", "cost of taxes to the government", "value of tax credits and reliefs"],
             datasets: [{
                 label: 'normalized KPI',
                 data: data['normalizedKPIValuesAchieved'],
@@ -119,6 +119,11 @@ function draw_economic_data(data, ctx) {
                     ticks: {
                         beginAtZero: true
                     }
+                }],
+                xAxes: [{
+                    ticks: {
+                        autoSkip: false
+                    }
                 }]
             }
         }
@@ -126,17 +131,19 @@ function draw_economic_data(data, ctx) {
 }
 function draw_economic_data_as_pie(data, ctx) {
     new Chart(ctx, {
-        type: 'doughnut',
+        type: 'radar',
         data: {
-            labels: ["X1", "X2", "X3", "X4", "X5", "X6", "X7", "X8", "X9", "X10", "X11", "X12", "X13", "X14"],
+            labels: ["Revenue through sale of product", "increase in market share", "revenue through investment in other products", "revenue from other sources", "new export markets", "revenue through carbon credits", "op cost of cement production", "cost of borrowing money", "alternative fuels", "heat capture", "implications of physical or regulatory activity", "cost of investment in community", "cost of taxes to the government", "value of tax credits and reliefs"],
             datasets: [{
                 label: 'normalized KPI',
                 data: data['normalizedKPIValuesAchieved'],
-                backgroundColor: ['#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6', '#E6B333', '#3366E6', '#999966', '#99FF99', '#B34D4D', '#80B300', '#809900', '#E6B3B3', '#6680B3']
+                backgroundColor: 'rgba(255,102,51,0.1)',
+                borderColor: '#FF6633'
             }, {
                 label: 'max normalized KPI',
                 data: data['maxNormalizedKPIValuesAchieved'],
-                backgroundColor: ['#66991A', '#FF99E6', '#CCFF1A', '#FF1A66', '#E6331A', '#33FFCC', '#66994D', '#B366CC', '#4D8000', '#B33300', '#CC80CC', '#66664D', '#991AFF', '#E666FF'],
+                backgroundColor: 'rgba(102,153,26,0.1)',
+                borderColor: '#66991A'
             }]
         }
     });
@@ -147,7 +154,7 @@ function draw_environment_data(data, ctx) {
     new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ["X15", "X16", "X17", "X18", "X19", "X20", "X21", "X22", "X23", "X24", "X25"],
+            labels: ["electricity consumption", "electricity from non renewable sources", "CO2 emissions", "heat captured", "Air emissions of SOX", "Air emissions of NOX", "Emissions of particulate matters", "grievances about environment impact", "grievances addressed about environment impact", "grievances resolved about environment impact", "emp suggesstions implemented"],
             datasets: [{
                 label: 'normalized KPI',
                 data: data['normalizedKPIValuesAchieved'],
@@ -166,6 +173,11 @@ function draw_environment_data(data, ctx) {
                     ticks: {
                         beginAtZero: true
                     }
+                }],
+                xAxes: [{
+                    ticks: {
+                        autoSkip: false
+                    }
                 }]
             }
         }
@@ -174,17 +186,19 @@ function draw_environment_data(data, ctx) {
 
 function draw_environment_data_as_pie(data, ctx) {
     new Chart(ctx, {
-        type: 'doughnut',
+        type: 'radar',
         data: {
-            labels: ["X15", "X16", "X17", "X18", "X19", "X20", "X21", "X22", "X23", "X24", "X25"],
+            labels: ["electricity consumption", "electricity from non renewable sources", "CO2 emissions", "heat captured", "Air emissions of SOX", "Air emissions of NOX", "Emissions of particulate matters", "grievances about environment impact", "grievances addressed about environment impact", "grievances resolved about environment impact", "emp suggesstions implemented"],
             datasets: [{
                 label: 'normalized KPI',
                 data: data['normalizedKPIValuesAchieved'],
-                backgroundColor: ["#4DB3FF", "#1AB399", "#E666B3", "#33991A", "#CC9999", "#B3B31A", "#00E680", "#4D8066", "#809980", "#E6FF80", "#1AFF33"]
+                backgroundColor: 'rgba(26,179,153,0.1)',
+                borderColor: "#1AB399"
             }, {
                 label: 'max normalized KPI',
                 data: data['maxNormalizedKPIValuesAchieved'],
-                backgroundColor: ["#999933", "#FF3380", "#CCCC00", "#66E64D", "#4D80CC", "#9900B3", "#E64D66", "#4DB380", "#FF4D4D", "#99E6E6", "#6666FF"]
+                backgroundColor: 'rgba(255,51,128,0.1)',
+                borderColor: "#FF3380"
             }]
         }
     });
@@ -194,7 +208,7 @@ function draw_social_data(data, ctx) {
     new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ["X26", "X27", "X28", "X29", "X30", "X31", "X32", "X33", "X34", "X35", "X36", "X37", "X38"],
+            labels: ["days of lost work reported", "work related injuries", "Occupational illnesses", "absence rate", "work related fatalities", "workers with high risk of diseases", "emp hired in age group of 20 & 40", "female employees", "emp turn over for age group of 20 & 40", "life insurance", "health coverage", "disability coverage", "parental leave"],
             datasets: [{
                 label: 'normalized KPI',
                 data: data['normalizedKPIValuesAchieved'],
@@ -213,6 +227,11 @@ function draw_social_data(data, ctx) {
                     ticks: {
                         beginAtZero: true
                     }
+                }],
+                xAxes: [{
+                    ticks: {
+                        autoSkip: false
+                    }
                 }]
             }
         }
@@ -221,17 +240,19 @@ function draw_social_data(data, ctx) {
 
 function draw_social_data_as_pie(data, ctx) {
     new Chart(ctx, {
-        type: 'doughnut',
+        type: 'radar',
         data: {
-            labels: ["X26", "X27", "X28", "X29", "X30", "X31", "X32", "X33", "X34", "X35", "X36", "X37", "X38"],
+            labels: ["days of lost work reported", "work related injuries", "Occupational illnesses", "absence rate", "work related fatalities", "workers with high risk of diseases", "emp hired in age group of 20 & 40", "female employees", "emp turn over for age group of 20 & 40", "life insurance", "health coverage", "disability coverage", "parental leave"],
             datasets: [{
                 label: 'normalized KPI',
                 data: data['normalizedKPIValuesAchieved'],
-                backgroundColor: ["#4DB3FF", "#1AB399", "#E666B3", "#33991A", "#CC9999", "#B3B31A", "#00E680", "#4D8066", "#809980", "#E6FF80", "#1AFF33", "#809980", "#E6FF80", "#1AFF33"],
+                backgroundColor: 'rgba(77,179,255,0.1)',
+                borderColor: "#4DB3FF"
             }, {
                 label: 'max normalized KPI',
                 data: data['maxNormalizedKPIValuesAchieved'],
-                backgroundColor: ["#999933", "#FF3380", "#CCCC00", "#66E64D", "#4D80CC", "#9900B3", "#E64D66", "#4DB380", "#FF4D4D", "#99E6E6", "#6666FF", "#FF4D4D", "#99E6E6", "#6666FF"],
+                backgroundColor: 'rgba(153,153,51,0.1)',
+                borderColor: "#999933"
             }]
         }
     });
@@ -241,7 +262,7 @@ function draw_total_data(arr1, arr2, ctx) {
     new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ["X1", "X2", "X3", "X4", "X5", "X6", "X7", "X8", "X9", "X10", "X11", "X12", "X13", "X14", "X15", "X16", "X17", "X18", "X18", "X19", "X20", "X21", "X22", "X23", "X24", "X25", "X26", "X27", "X28", "X29", "X30", "X31", "X32", "X33", "X34", "X35", "X36", "X37", "X38"],
+            labels: ["Revenue through sale of product", "increase in market share", "revenue through investment in other products", "revenue from other sources", "new export markets", "revenue through carbon credits", "op cost of cement production", "cost of borrowing money", "alternative fuels", "heat capture", "implications of physical or regulatory activity", "cost of investment in community", "cost of taxes to the government", "value of tax credits and reliefs", "electricity consumption", "electricity from non renewable sources", "CO2 emissions", "heat captured", "heat captured", "Air emissions of SOX", "Air emissions of NOX", "Emissions of particulate matters", "grievances about environment impact", "grievances addressed about environment impact", "grievances resolved about environment impact", "emp suggesstions implemented", "days of lost work reported", "work related injuries", "Occupational illnesses", "absence rate", "work related fatalities", "workers with high risk of diseases", "emp hired in age group of 20 & 40", "female employees", "emp turn over for age group of 20 & 40", "life insurance", "health coverage", "disability coverage", "parental leave"],
             datasets: [{
                 label: 'sustainability KPI Achieved',
                 data: arr1,
@@ -259,6 +280,11 @@ function draw_total_data(arr1, arr2, ctx) {
                 yAxes: [{
                     ticks: {
                         beginAtZero: true
+                    }
+                }],
+                xAxes: [{
+                    ticks: {
+                        autoSkip: false
                     }
                 }]
             }
@@ -336,4 +362,9 @@ populate_tables();
 show_heading(option);
 show_table(option);
 
-// ['#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6', '#E6B333', '#3366E6', '#999966', '#99FF99', '#B34D4D', '#80B300', '#809900', '#E6B3B3', '#6680B3', '#66991A', '#FF99E6', '#CCFF1A', '#FF1A66', '#E6331A', '#33FFCC', '#66994D', '#B366CC', '#4D8000', '#B33300', '#CC80CC', '#66664D', '#991AFF', '#E666FF', '#4DB3FF', '#1AB399', '#E666B3', '#33991A', '#CC9999', '#B3B31A', '#00E680', '#4D8066', '#809980', '#E6FF80', '#1AFF33', '#999933', '#FF3380', '#CCCC00', '#66E64D', '#4D80CC', '#9900B3', '#E64D66', '#4DB380', '#FF4D4D', '#99E6E6', '#6666FF']
+//['#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6', '#E6B333', '#3366E6', '#999966', '#99FF99', '#B34D4D', '#80B300', '#809900', '#E6B3B3', '#6680B3']
+//['#66991A', '#FF99E6', '#CCFF1A', '#FF1A66', '#E6331A', '#33FFCC', '#66994D', '#B366CC', '#4D8000', '#B33300', '#CC80CC', '#66664D', '#991AFF', '#E666FF']
+//["#4DB3FF", "#1AB399", "#E666B3", "#33991A", "#CC9999", "#B3B31A", "#00E680", "#4D8066", "#809980", "#E6FF80", "#1AFF33"]
+//["#999933", "#FF3380", "#CCCC00", "#66E64D", "#4D80CC", "#9900B3", "#E64D66", "#4DB380", "#FF4D4D", "#99E6E6", "#6666FF"]
+//["#4DB3FF", "#1AB399", "#E666B3", "#33991A", "#CC9999", "#B3B31A", "#00E680", "#4D8066", "#809980", "#E6FF80", "#1AFF33", "#809980", "#E6FF80", "#1AFF33"]
+//["#999933", "#FF3380", "#CCCC00", "#66E64D", "#4D80CC", "#9900B3", "#E64D66", "#4DB380", "#FF4D4D", "#99E6E6", "#6666FF", "#FF4D4D", "#99E6E6", "#6666FF"]

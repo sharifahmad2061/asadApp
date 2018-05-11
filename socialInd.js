@@ -39,6 +39,7 @@ let maxNormalizedKPIValuesAchieved = [];
 let normalizedKPIValuesAchieved = [];
 
 const fields = document.querySelectorAll("#main-form input[type=number]");
+const be_tb_clr = document.querySelector("input[name=be-tb-clr]");
 const checks = document.querySelectorAll("#main-form input[type=checkbox]");
 
 document.querySelector('#btn-sbm').addEventListener('click', () => {
@@ -57,6 +58,8 @@ document.querySelector('#btn-sbm').addEventListener('click', () => {
         else if (index % 3 == 1) socialData['TargetYearValues'].push(+ elem.checked);
         else socialData['CurrentYearValues'].push(+ elem.checked);
     });
+
+    benchmarkPercentage = be_tb_clr.value / 100;
 
     loopControl = socialData['BenchmarkYearValues'].length;
 
@@ -119,6 +122,7 @@ document.querySelector('#btn-sbm').addEventListener('click', () => {
     socialData['sustainabilityKPIAchieved'] = KPIValuesAchieved;
     socialData['maxKPIAchievedValues'] = maxKPIAchievedValues;
     socialData['percentageOfTargetValueAchieved'] = percentageOfTargetValueAchieved;
+    socialData['benchmarkPercentage'] = benchmarkPercentage;
 
     fs.writeFile(path.join(__dirname, 'data/social.json'), JSON.stringify(socialData, null, 4), () => {
         let el = document.querySelectorAll("form");
