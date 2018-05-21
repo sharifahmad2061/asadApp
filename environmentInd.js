@@ -37,7 +37,7 @@ let maxNormalizedKPIValuesAchieved = [];
 let normalizedKPIValuesAchieved = [];
 
 const fields = document.querySelectorAll("#main-form input[type=number]");
-const be_tb_clr = document.querySelector("input[name=be-tb-clr]");
+//const be_tb_clr = document.querySelector("input[name=be-tb-clr]");
 
 document.querySelector('#btn-sbm').addEventListener('click', () => {
     //clear the arrays
@@ -51,7 +51,7 @@ document.querySelector('#btn-sbm').addEventListener('click', () => {
         else environmentalData['CurrentYearValues'].push(elem.value);
     });
 
-    benchmarkPercentage = be_tb_clr.value / 100;
+//    benchmarkPercentage = be_tb_clr.value / 100;
     // console.log(environmentalData['BenchmarkYearValues']);
 
     loopControl = environmentalData['BenchmarkYearValues'].length;
@@ -110,7 +110,7 @@ document.querySelector('#btn-sbm').addEventListener('click', () => {
     environmentalData['sustainabilityKPIAchieved'] = KPIValuesAchieved;
     environmentalData['maxKPIAchievedValues'] = maxKPIAchievedValues;
     environmentalData['percentageOfTargetValueAchieved'] = percentageOfTargetValueAchieved;
-    environmentalData['benchmarkPercentage'] = benchmarkPercentage;
+//    environmentalData['benchmarkPercentage'] = benchmarkPercentage;
 
     // console.log(environmentalData);
     fs.writeFile(path.join(__dirname, 'data/environmental.json'), JSON.stringify(environmentalData, null, 4), () => {
@@ -120,6 +120,11 @@ document.querySelector('#btn-sbm').addEventListener('click', () => {
                 return;
             }
         }
-        window.location.replace("socialInd.html");
+        window.location.assign("socialInd.html");
     });
+});
+
+const print_btn = document.querySelector("#p_btn");
+print_btn.addEventListener('click',()=>{
+    window.print();
 });

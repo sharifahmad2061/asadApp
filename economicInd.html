@@ -12,7 +12,10 @@
 
 <body>
     <main class="container">
-        <h3 class="text-center">Economic Indicators</h3>
+        <div class="row mt-1">
+            <h3 class="col-sm-10 text-center">Economic Indicators</h3>
+            <a class="col-sm-2" id="p_btn" href="#"><img src="assets/round-print.svg"></a>            
+        </div>
         <form class="row needs-validation">
             <div class="form-group col-sm-6">
                 <label for="">Benchmark Year</label>
@@ -23,7 +26,7 @@
             <div class="form-group col-sm-6">
                 <label for="">Benchmark Percentage</label>
                 <div>
-                    <input type="number" name="be-tb-clr" class="form-control" min="0" required>
+                    <input type="number" name="be-tb-clr" class="form-control" min="0" step="0.01" required>
                 </div>
             </div>
         </form>
@@ -55,13 +58,13 @@
                     <div class="input-group-prepend">
                         <div class="input-group-text">%</div>
                     </div>
-                    <input type="number" class="form-control" min="0" required>
+                    <input type="number" class="form-control" min="0" step="0.01" required>
                 </div>
                 <div class="col-sm-2">
-                    <input type="number" class="form-control" min="0" required>
+                    <input type="number" class="form-control" min="0" step="0.01" required>
                 </div>
                 <div class="col-sm-2">
-                    <input type="number" class="form-control" min="0" required>
+                    <input type="number" class="form-control" min="0" step="0.01" required>
                 </div>
             </div>
             <div class="form-group row">
@@ -155,10 +158,10 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="" class="col-sm-6">Revenue saved by using measures such as alternative fuels?</label>
+                <label for="" class="col-sm-6">Measures implemented such as Alternative fuels?</label>
                 <div class="col-sm-2 input-group">
                     <div class="input-group-prepend">
-                        <div class="input-group-text">Rs</div>
+                        <div class="input-group-text">#</div>
                     </div>
                     <input type="number" class="form-control" min="0" required>
                 </div>
@@ -170,10 +173,10 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="" class="col-sm-6">Revenue saved by implementing measures for Heat Capture?</label>
+                <label for="" class="col-sm-6">Measures implemented for Heat Capture?</label>
                 <div class="col-sm-2 input-group">
                     <div class="input-group-prepend">
-                        <div class="input-group-text">Rs</div>
+                        <div class="input-group-text">#</div>
                     </div>
                     <input type="number" class="form-control" min="0" required>
                 </div>

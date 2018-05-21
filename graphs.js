@@ -102,12 +102,12 @@ function draw_economic_data(data, ctx) {
         data: {
             labels: ["Revenue through sale of product", "increase in market share", "revenue through investment in other products", "revenue from other sources", "new export markets", "revenue through carbon credits", "op cost of cement production", "cost of borrowing money", "alternative fuels", "heat capture", "implications of physical or regulatory activity", "cost of investment in community", "cost of taxes to the government", "value of tax credits and reliefs"],
             datasets: [{
-                label: 'normalized KPI',
+                label: 'Achieved',
                 data: data['normalizedKPIValuesAchieved'],
                 backgroundColor: '#FFB74D',
                 borderWidth: 1
             }, {
-                label: 'max normalized KPI',
+                label: 'Target',
                 data: data['maxNormalizedKPIValuesAchieved'],
                 backgroundColor: '#00E676',
                 borderWidth: 1
@@ -135,12 +135,12 @@ function draw_economic_data_as_pie(data, ctx) {
         data: {
             labels: ["Revenue through sale of product", "increase in market share", "revenue through investment in other products", "revenue from other sources", "new export markets", "revenue through carbon credits", "op cost of cement production", "cost of borrowing money", "alternative fuels", "heat capture", "implications of physical or regulatory activity", "cost of investment in community", "cost of taxes to the government", "value of tax credits and reliefs"],
             datasets: [{
-                label: 'normalized KPI',
+                label: 'Achieved',
                 data: data['normalizedKPIValuesAchieved'],
                 backgroundColor: 'rgba(255,102,51,0.1)',
                 borderColor: '#FF6633'
             }, {
-                label: 'max normalized KPI',
+                label: 'Target',
                 data: data['maxNormalizedKPIValuesAchieved'],
                 backgroundColor: 'rgba(102,153,26,0.1)',
                 borderColor: '#66991A'
@@ -156,12 +156,12 @@ function draw_environment_data(data, ctx) {
         data: {
             labels: ["electricity consumption", "electricity from non renewable sources", "CO2 emissions", "heat captured", "Air emissions of SOX", "Air emissions of NOX", "Emissions of particulate matters", "grievances about environment impact", "grievances addressed about environment impact", "grievances resolved about environment impact", "emp suggesstions implemented"],
             datasets: [{
-                label: 'normalized KPI',
+                label: 'Achieved',
                 data: data['normalizedKPIValuesAchieved'],
                 backgroundColor: '#26A69A',
                 borderWidth: 1
             }, {
-                label: 'max normalized KPI',
+                label: 'Target',
                 data: data['maxNormalizedKPIValuesAchieved'],
                 backgroundColor: '#00BCD4',
                 borderWidth: 1
@@ -190,12 +190,12 @@ function draw_environment_data_as_pie(data, ctx) {
         data: {
             labels: ["electricity consumption", "electricity from non renewable sources", "CO2 emissions", "heat captured", "Air emissions of SOX", "Air emissions of NOX", "Emissions of particulate matters", "grievances about environment impact", "grievances addressed about environment impact", "grievances resolved about environment impact", "emp suggesstions implemented"],
             datasets: [{
-                label: 'normalized KPI',
+                label: 'Achieved',
                 data: data['normalizedKPIValuesAchieved'],
                 backgroundColor: 'rgba(26,179,153,0.1)',
                 borderColor: "#1AB399"
             }, {
-                label: 'max normalized KPI',
+                label: 'Target',
                 data: data['maxNormalizedKPIValuesAchieved'],
                 backgroundColor: 'rgba(255,51,128,0.1)',
                 borderColor: "#FF3380"
@@ -210,12 +210,12 @@ function draw_social_data(data, ctx) {
         data: {
             labels: ["days of lost work reported", "work related injuries", "Occupational illnesses", "absence rate", "work related fatalities", "workers with high risk of diseases", "emp hired in age group of 20 & 40", "female employees", "emp turn over for age group of 20 & 40", "life insurance", "health coverage", "disability coverage", "parental leave"],
             datasets: [{
-                label: 'normalized KPI',
+                label: 'Achieved',
                 data: data['normalizedKPIValuesAchieved'],
                 backgroundColor: '#F06292',
                 borderWidth: 1
             }, {
-                label: 'max normalized KPI',
+                label: 'Target',
                 data: data['maxNormalizedKPIValuesAchieved'],
                 backgroundColor: '#3F51B5',
                 borderWidth: 1
@@ -244,12 +244,12 @@ function draw_social_data_as_pie(data, ctx) {
         data: {
             labels: ["days of lost work reported", "work related injuries", "Occupational illnesses", "absence rate", "work related fatalities", "workers with high risk of diseases", "emp hired in age group of 20 & 40", "female employees", "emp turn over for age group of 20 & 40", "life insurance", "health coverage", "disability coverage", "parental leave"],
             datasets: [{
-                label: 'normalized KPI',
+                label: 'Achieved',
                 data: data['normalizedKPIValuesAchieved'],
                 backgroundColor: 'rgba(77,179,255,0.1)',
                 borderColor: "#4DB3FF"
             }, {
-                label: 'max normalized KPI',
+                label: 'Target',
                 data: data['maxNormalizedKPIValuesAchieved'],
                 backgroundColor: 'rgba(153,153,51,0.1)',
                 borderColor: "#999933"
@@ -295,15 +295,15 @@ function draw_total_data(arr1, arr2, ctx) {
 function populate_tables() {
     economic_data['percentageOfTargetValueAchieved'].forEach((element, index) => {
         ec_tb.children[index].children[2].innerHTML = element;
-        ec_tb.children[index].children[3].innerHTML = element >= economic_data['benchmarkPercentage'] ? 'fine' : 'needs improvement';
+        ec_tb.children[index].children[3].innerHTML = element >= economic_data['benchmarkPercentage'] ? 'target achieved' : 'needs improvement';
     });
     environment_data['percentageOfTargetValueAchieved'].forEach((element, index) => {
         en_tb.children[index].children[2].innerHTML = element;
-        en_tb.children[index].children[3].innerHTML = element >= environment_data['benchmarkPercentage'] ? 'fine' : 'needs improvement';
+        en_tb.children[index].children[3].innerHTML = element >= economic_data['benchmarkPercentage'] ? 'target achieved' : 'needs improvement';
     });
     social_data['percentageOfTargetValueAchieved'].forEach((element, index) => {
         sl_tb.children[index].children[2].innerHTML = element;
-        sl_tb.children[index].children[3].innerHTML = element >= social_data['benchmarkPercentage'] ? 'fine' : 'needs improvement';
+        sl_tb.children[index].children[3].innerHTML = element >= economic_data['benchmarkPercentage'] ? 'target achieved' : 'needs improvement';
     });
 }
 
@@ -362,9 +362,8 @@ populate_tables();
 show_heading(option);
 show_table(option);
 
-//['#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6', '#E6B333', '#3366E6', '#999966', '#99FF99', '#B34D4D', '#80B300', '#809900', '#E6B3B3', '#6680B3']
-//['#66991A', '#FF99E6', '#CCFF1A', '#FF1A66', '#E6331A', '#33FFCC', '#66994D', '#B366CC', '#4D8000', '#B33300', '#CC80CC', '#66664D', '#991AFF', '#E666FF']
-//["#4DB3FF", "#1AB399", "#E666B3", "#33991A", "#CC9999", "#B3B31A", "#00E680", "#4D8066", "#809980", "#E6FF80", "#1AFF33"]
-//["#999933", "#FF3380", "#CCCC00", "#66E64D", "#4D80CC", "#9900B3", "#E64D66", "#4DB380", "#FF4D4D", "#99E6E6", "#6666FF"]
-//["#4DB3FF", "#1AB399", "#E666B3", "#33991A", "#CC9999", "#B3B31A", "#00E680", "#4D8066", "#809980", "#E6FF80", "#1AFF33", "#809980", "#E6FF80", "#1AFF33"]
-//["#999933", "#FF3380", "#CCCC00", "#66E64D", "#4D80CC", "#9900B3", "#E64D66", "#4DB380", "#FF4D4D", "#99E6E6", "#6666FF", "#FF4D4D", "#99E6E6", "#6666FF"]
+
+const print_btn = document.querySelector("#p_btn");
+print_btn.addEventListener('click',()=>{
+    window.print();
+});

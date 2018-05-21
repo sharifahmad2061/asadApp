@@ -106,7 +106,11 @@ document.querySelector('#btn-sbm').addEventListener('click', () => {
                 return;
             }
         }
-        window.location.replace("environmentInd.html");
+        window.location.assign("environmentInd.html");
     });
 });
 
+const print_btn = document.querySelector("#p_btn");
+print_btn.addEventListener('click',()=>{
+    window.print();
+});
