@@ -294,15 +294,15 @@ function draw_total_data(arr1, arr2, ctx) {
 
 function populate_tables() {
     economic_data['percentageOfTargetValueAchieved'].forEach((element, index) => {
-        ec_tb.children[index].children[2].innerHTML = element;
+        ec_tb.children[index].children[2].innerHTML = element * 100;
         ec_tb.children[index].children[3].innerHTML = element >= economic_data['benchmarkPercentage'] ? 'target achieved' : 'needs improvement';
     });
     environment_data['percentageOfTargetValueAchieved'].forEach((element, index) => {
-        en_tb.children[index].children[2].innerHTML = element;
+        en_tb.children[index].children[2].innerHTML = element * 100;
         en_tb.children[index].children[3].innerHTML = element >= economic_data['benchmarkPercentage'] ? 'target achieved' : 'needs improvement';
     });
     social_data['percentageOfTargetValueAchieved'].forEach((element, index) => {
-        sl_tb.children[index].children[2].innerHTML = element;
+        sl_tb.children[index].children[2].innerHTML = element * 100;
         sl_tb.children[index].children[3].innerHTML = element >= economic_data['benchmarkPercentage'] ? 'target achieved' : 'needs improvement';
     });
 }
