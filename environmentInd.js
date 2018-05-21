@@ -124,7 +124,7 @@ document.querySelector('#btn-sbm').addEventListener('click', () => {
     });
 });
 
-const print_btn = document.querySelector("#p_btn");
+var print_btn = document.querySelector("#p_btn");
 print_btn.addEventListener('click',()=>{
     window.print();
 });

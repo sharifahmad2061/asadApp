@@ -30,6 +30,11 @@ let en_hdr = document.querySelector('#en-hdr');
 let sl_hdr = document.querySelector('#sl-hdr');
 
 
+//print functionality
+const p_btn = document.querySelector("#p_btn");
+p_btn.addEventListener('click',()=>{
+    window.print();
+});
 
 let option = 'economic';
 let option2 = 'bar';
@@ -104,12 +109,12 @@ function draw_economic_data(data, ctx) {
             datasets: [{
                 label: 'Achieved',
                 data: data['normalizedKPIValuesAchieved'],
-                backgroundColor: '#FFB74D',
+                backgroundColor: '#B664F0',
                 borderWidth: 1
             }, {
                 label: 'Target',
                 data: data['maxNormalizedKPIValuesAchieved'],
-                backgroundColor: '#00E676',
+                backgroundColor: '#E32481',
                 borderWidth: 1
             }]
         },
@@ -137,13 +142,13 @@ function draw_economic_data_as_pie(data, ctx) {
             datasets: [{
                 label: 'Achieved',
                 data: data['normalizedKPIValuesAchieved'],
-                backgroundColor: 'rgba(255,102,51,0.1)',
-                borderColor: '#FF6633'
+                backgroundColor: 'rgba(182, 100, 240,0.1)',
+                borderColor: '#B664F0'
             }, {
                 label: 'Target',
                 data: data['maxNormalizedKPIValuesAchieved'],
-                backgroundColor: 'rgba(102,153,26,0.1)',
-                borderColor: '#66991A'
+                backgroundColor: 'rgba(227, 36, 129,0.1)',
+                borderColor: '#E32481'
             }]
         }
     });
@@ -158,12 +163,12 @@ function draw_environment_data(data, ctx) {
             datasets: [{
                 label: 'Achieved',
                 data: data['normalizedKPIValuesAchieved'],
-                backgroundColor: '#26A69A',
+                backgroundColor: '#B664F0',
                 borderWidth: 1
             }, {
                 label: 'Target',
                 data: data['maxNormalizedKPIValuesAchieved'],
-                backgroundColor: '#00BCD4',
+                backgroundColor: '#E32481',
                 borderWidth: 1
             }]
         },
@@ -192,13 +197,13 @@ function draw_environment_data_as_pie(data, ctx) {
             datasets: [{
                 label: 'Achieved',
                 data: data['normalizedKPIValuesAchieved'],
-                backgroundColor: 'rgba(26,179,153,0.1)',
-                borderColor: "#1AB399"
+                backgroundColor: 'rgba(182, 100, 240,0.1)',
+                borderColor: "#B664F0"
             }, {
                 label: 'Target',
                 data: data['maxNormalizedKPIValuesAchieved'],
-                backgroundColor: 'rgba(255,51,128,0.1)',
-                borderColor: "#FF3380"
+                backgroundColor: 'rgba(227, 36, 129,0.1)',
+                borderColor: "#E32481"
             }]
         }
     });
@@ -212,12 +217,12 @@ function draw_social_data(data, ctx) {
             datasets: [{
                 label: 'Achieved',
                 data: data['normalizedKPIValuesAchieved'],
-                backgroundColor: '#F06292',
+                backgroundColor: '#B664F0',
                 borderWidth: 1
             }, {
                 label: 'Target',
                 data: data['maxNormalizedKPIValuesAchieved'],
-                backgroundColor: '#3F51B5',
+                backgroundColor: '#E32481',
                 borderWidth: 1
             }]
         },
@@ -246,13 +251,13 @@ function draw_social_data_as_pie(data, ctx) {
             datasets: [{
                 label: 'Achieved',
                 data: data['normalizedKPIValuesAchieved'],
-                backgroundColor: 'rgba(77,179,255,0.1)',
-                borderColor: "#4DB3FF"
+                backgroundColor: 'rgba(182, 100, 240,0.1)',
+                borderColor: "#B664F0"
             }, {
                 label: 'Target',
                 data: data['maxNormalizedKPIValuesAchieved'],
-                backgroundColor: 'rgba(153,153,51,0.1)',
-                borderColor: "#999933"
+                backgroundColor: 'rgba(227, 36, 129,0.1)',
+                borderColor: "#E32481"
             }]
         }
     });
@@ -266,12 +271,12 @@ function draw_total_data(arr1, arr2, ctx) {
             datasets: [{
                 label: 'sustainability KPI Achieved',
                 data: arr1,
-                backgroundColor: '#3F51B5',
+                backgroundColor: '#B664F0',
                 borderWidth: 1
             }, {
                 label: 'max KPI Achieved',
                 data: arr2,
-                backgroundColor: '#2196F3',
+                backgroundColor: '#E32481',
                 borderWidth: 1
             }]
         },
@@ -361,9 +366,3 @@ draw_graph(option, option2);
 populate_tables();
 show_heading(option);
 show_table(option);
-
-
-const print_btn = document.querySelector("#p_btn");
-print_btn.addEventListener('click',()=>{
-    window.print();
-});
