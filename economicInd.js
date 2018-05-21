@@ -108,6 +108,13 @@ document.querySelector('#btn-sbm').addEventListener('click', () => {
         }
         window.location.assign("environmentInd.html");
     });
+
+    //write the fields data to local storage for retreiving later
+    localStorage.setItem('ec_av','true');
+    const it = document.querySelectorAll('input[name]');
+    it.forEach((element)=>{
+        localStorage.setItem(element.getAttribute('name'),element.value);
+    });
 });
 
 var print_btn = document.querySelector("#p_btn");
