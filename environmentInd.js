@@ -131,6 +131,17 @@ document.querySelector('#btn-sbm').addEventListener('click', () => {
     });
 });
 
+//fill the fields with previous data if available
+function fill_page(){
+    if(Boolean(localStorage.getItem('en_av')) == true){
+        const it = document.querySelectorAll('input[name]');
+        it.forEach((element)=>{
+            element.value = localStorage.getItem(element.getAttribute('name'));
+        })
+    }
+}
+fill_page();
+
 var print_btn = document.querySelector("#p_btn");
 print_btn.addEventListener('click',()=>{
     window.print();
