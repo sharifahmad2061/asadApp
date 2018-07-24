@@ -136,19 +136,27 @@ document.querySelector('#btn-sbm').addEventListener('click', () => {
 
     //write the fields data to local storage for retreiving later
     localStorage.setItem('so_av', 'true');
-    const it = document.querySelectorAll('input[name]');
+    let it = document.querySelectorAll('input[name]');
     it.forEach((element) => {
         localStorage.setItem(element.getAttribute('name'), element.value);
+    });
+    it = document.querySelectorAll('input[type=checkbox]');
+    it.forEach((element) => {
+        localStorage.setItem(element.getAttribute('name'), element.checked);
     });
 });
 
 //fill the fields with previous data if available
 function fill_page() {
     if (Boolean(localStorage.getItem('so_av')) == true) {
-        const it = document.querySelectorAll('input[name]');
+        let it = document.querySelectorAll('input[name]');
         it.forEach((element) => {
             element.value = localStorage.getItem(element.getAttribute('name'));
-        })
+        });
+        it = document.querySelectorAll('input[type=checkbox]');
+        it.forEach((element) => {
+            element.checked = localStorage.getItem(element.getAttribute('name')) == 'true';
+        });
     }
 }
 fill_page();
