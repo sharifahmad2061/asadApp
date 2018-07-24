@@ -51,7 +51,7 @@ document.querySelector('#btn-sbm').addEventListener('click', () => {
         else environmentalData['CurrentYearValues'].push(elem.value);
     });
 
-//    benchmarkPercentage = be_tb_clr.value / 100;
+    //    benchmarkPercentage = be_tb_clr.value / 100;
     // console.log(environmentalData['BenchmarkYearValues']);
 
     loopControl = environmentalData['BenchmarkYearValues'].length;
@@ -61,8 +61,11 @@ document.querySelector('#btn-sbm').addEventListener('click', () => {
         if (i < 8) {
             targetAchievedFromBaselineYear.push(Math.abs(environmentalData['BenchmarkYearValues'][i] - environmentalData['CurrentYearValues'][i]));
         }
-        else {
+        else if (i >= 8 && i < 10) {
             targetAchievedFromBaselineYear.push(Math.abs(environmentalData['CurrentYearValues'][i] - environmentalData['BenchmarkYearValues'][i]));
+        }
+        else {
+            targetAchievedFromBaselineYear.push(environmentalData['CurrentYearValues'][i] - environmentalData['BenchmarkYearValues'][i]);
         }
     }
 
@@ -81,7 +84,7 @@ document.querySelector('#btn-sbm').addEventListener('click', () => {
         let KPIAchieved = valueAssignedForTargetAchieved[i] * environmentalEigenValues[i] * 100 * overallEnvironmentalEigenValue * economicEffectOnEnvironmental * socialEffectOnEnvironmental;
         KPIValuesAchieved.push(KPIAchieved);
     }
-    
+
     let sumOfMaxKPI = 0;
 
     for (let i = 0; i < loopControl; i++) {
@@ -103,14 +106,14 @@ document.querySelector('#btn-sbm').addEventListener('click', () => {
     }
 
     // console.log(KPIValuesAchieved.length,maxKPIAchievedValues.length,maxNormalizedKPIValuesAchieved.length,normalizedKPIValuesAchieved.length);
-    
+
 
     environmentalData['normalizedKPIValuesAchieved'] = normalizedKPIValuesAchieved;
     environmentalData['maxNormalizedKPIValuesAchieved'] = maxNormalizedKPIValuesAchieved;
     environmentalData['sustainabilityKPIAchieved'] = KPIValuesAchieved;
     environmentalData['maxKPIAchievedValues'] = maxKPIAchievedValues;
     environmentalData['percentageOfTargetValueAchieved'] = percentageOfTargetValueAchieved;
-//    environmentalData['benchmarkPercentage'] = benchmarkPercentage;
+    //    environmentalData['benchmarkPercentage'] = benchmarkPercentage;
 
     // console.log(environmentalData);
     fs.writeFile(path.join(__dirname, 'data/environmental.json'), JSON.stringify(environmentalData, null, 4), () => {
@@ -124,18 +127,18 @@ document.querySelector('#btn-sbm').addEventListener('click', () => {
     });
 
     //write the fields data to local storage for retreiving later
-    localStorage.setItem('en_av','true');
+    localStorage.setItem('en_av', 'true');
     const it = document.querySelectorAll('input[name]');
-    it.forEach((element)=>{
-        localStorage.setItem(element.getAttribute('name'),element.value);
+    it.forEach((element) => {
+        localStorage.setItem(element.getAttribute('name'), element.value);
     });
 });
 
 //fill the fields with previous data if available
-function fill_page(){
-    if(Boolean(localStorage.getItem('en_av')) == true){
+function fill_page() {
+    if (Boolean(localStorage.getItem('en_av')) == true) {
         const it = document.querySelectorAll('input[name]');
-        it.forEach((element)=>{
+        it.forEach((element) => {
             element.value = localStorage.getItem(element.getAttribute('name'));
         })
     }
@@ -143,6 +146,6 @@ function fill_page(){
 fill_page();
 
 var print_btn = document.querySelector("#p_btn");
-print_btn.addEventListener('click',()=>{
+print_btn.addEventListener('click', () => {
     window.print();
 });

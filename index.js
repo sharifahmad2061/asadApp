@@ -13,14 +13,14 @@ function createWindow() {
     //hide the default menu
     win.setMenu(null)
     //disable the resizing of window
-    win.setResizable(false);
+    // win.setResizable(false);
     //disable the windows maximize
     // win.setMaximizable(false);
     // win.maximize();
 
     // and load the index.html of the app.
     win.loadURL(url.format({
-        pathname: path.join(__dirname, 'homepage.html'),
+        pathname: path.join(__dirname, 'graphs.html'),
         protocol: 'file:',
         slashes: true
     }))
@@ -37,7 +37,7 @@ function createWindow() {
         win = null
     })
 
-    win.on('close',()=>{
+    win.on('close', () => {
         win.webContents.session.clearStorageData('localstorage')
     })
 }

@@ -59,7 +59,7 @@ document.querySelector('#btn-sbm').addEventListener('click', () => {
         else socialData['CurrentYearValues'].push(+ elem.checked);
     });
 
-//    benchmarkPercentage = be_tb_clr.value / 100;
+    //    benchmarkPercentage = be_tb_clr.value / 100;
 
     loopControl = socialData['BenchmarkYearValues'].length;
 
@@ -67,16 +67,16 @@ document.querySelector('#btn-sbm').addEventListener('click', () => {
         if (i < 6) {
             targetAchievedFromBaselineYear.push(socialData['BenchmarkYearValues'][i] - socialData['CurrentYearValues'][i]);
         }
-        else if (i > 6 && i < 9) {
+        else if (i >= 6 && i < 9) {
             targetAchievedFromBaselineYear.push(socialData['CurrentYearValues'][i] - socialData['BenchmarkYearValues'][i]);
         }
         else {
-            targetAchievedFromBaselineYear.push(socialData['CurrentYearValues'][i]);
+            targetAchievedFromBaselineYear.push(parseInt(socialData['CurrentYearValues'][i]));
         }
     }
 
     for (let i = 0; i < loopControl; i++) {
-        if (i < 10) {
+        if (i < 9) {
             percentageOfTargetValueAchieved.push(targetAchievedFromBaselineYear[i] / Math.abs(socialData['TargetYearValues'][i] - socialData['BenchmarkYearValues'][i]));
         } else {
             percentageOfTargetValueAchieved.push(socialData['CurrentYearValues'][i] / socialData['TargetYearValues'][i]);
@@ -122,7 +122,7 @@ document.querySelector('#btn-sbm').addEventListener('click', () => {
     socialData['sustainabilityKPIAchieved'] = KPIValuesAchieved;
     socialData['maxKPIAchievedValues'] = maxKPIAchievedValues;
     socialData['percentageOfTargetValueAchieved'] = percentageOfTargetValueAchieved;
-//    socialData['benchmarkPercentage'] = benchmarkPercentage;
+    //    socialData['benchmarkPercentage'] = benchmarkPercentage;
 
     fs.writeFile(path.join(__dirname, 'data/social.json'), JSON.stringify(socialData, null, 4), () => {
         let el = document.querySelectorAll("form");
@@ -135,18 +135,18 @@ document.querySelector('#btn-sbm').addEventListener('click', () => {
     });
 
     //write the fields data to local storage for retreiving later
-    localStorage.setItem('so_av','true');
+    localStorage.setItem('so_av', 'true');
     const it = document.querySelectorAll('input[name]');
-    it.forEach((element)=>{
-        localStorage.setItem(element.getAttribute('name'),element.value);
+    it.forEach((element) => {
+        localStorage.setItem(element.getAttribute('name'), element.value);
     });
 });
 
 //fill the fields with previous data if available
-function fill_page(){
-    if(Boolean(localStorage.getItem('so_av')) == true){
+function fill_page() {
+    if (Boolean(localStorage.getItem('so_av')) == true) {
         const it = document.querySelectorAll('input[name]');
-        it.forEach((element)=>{
+        it.forEach((element) => {
             element.value = localStorage.getItem(element.getAttribute('name'));
         })
     }
@@ -154,6 +154,6 @@ function fill_page(){
 fill_page();
 
 var print_btn = document.querySelector("#p_btn");
-print_btn.addEventListener('click',()=>{
+print_btn.addEventListener('click', () => {
     window.print();
 });
