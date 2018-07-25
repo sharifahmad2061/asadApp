@@ -59,10 +59,7 @@ document.querySelector('#btn-sbm').addEventListener('click', () => {
     //ask for reason
     for (let i = 0; i < loopControl; i++) {
         if (i < 8) {
-            targetAchievedFromBaselineYear.push(Math.abs(environmentalData['BenchmarkYearValues'][i] - environmentalData['CurrentYearValues'][i]));
-        }
-        else if (i >= 8 && i < 10) {
-            targetAchievedFromBaselineYear.push(Math.abs(environmentalData['CurrentYearValues'][i] - environmentalData['BenchmarkYearValues'][i]));
+            targetAchievedFromBaselineYear.push(environmentalData['BenchmarkYearValues'][i] - environmentalData['CurrentYearValues'][i]);
         }
         else {
             targetAchievedFromBaselineYear.push(environmentalData['CurrentYearValues'][i] - environmentalData['BenchmarkYearValues'][i]);
