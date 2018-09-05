@@ -51,6 +51,7 @@ ra_btn_form.addEventListener('change', () => {
     draw_graph(option, option2);
     show_heading(option);
     show_table(option);
+    show_total_sustainability(option);
 });
 
 function draw_graph(type, shape) {
@@ -362,7 +363,35 @@ function show_heading(type) {
     }
 }
 
+function show_total_sustainability(type) {
+    let desc = document.querySelector("#desc");
+    let val = document.querySelector("#val");
+    switch (type) {
+        case 'economic':
+            desc.textContent = "Total Economic Sustainability = ";
+            val.textContent = (economic_data['normalizedKPIValuesAchieved'].reduce((a, b) => a + b, 0)).toFixed(2) + " %";
+            break;
+        case 'environmental':
+            desc.textContent = "Total Environmental Sustainability = ";
+            val.textContent = (environment_data['normalizedKPIValuesAchieved'].reduce((a, b) => a + b, 0)).toFixed(2) + " %";
+            break;
+        case 'social':
+            desc.textContent = "Total social Sustainability = ";
+            val.textContent = (social_data['normalizedKPIValuesAchieved'].reduce((a, b) => a + b, 0)).toFixed(2) + " %";
+            break;
+        case 'total':
+            desc.textContent = "Accumulated Sustainability = ";
+            let temp = economic_data['normalizedKPIValuesAchieved'].reduce((a, b) => a + b, 0) + environment_data['normalizedKPIValuesAchieved'].reduce((a, b) => a + b, 0) + social_data['normalizedKPIValuesAchieved'].reduce((a, b) => a + b, 0);
+            temp /= 300;
+            temp *= 100;
+            val.textContent = temp.toFixed(2) + " %";
+        default:
+            break;
+    }
+}
+
 draw_graph(option, option2);
 populate_tables();
 show_heading(option);
 show_table(option);
+show_total_sustainability(option);
