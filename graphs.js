@@ -363,25 +363,33 @@ function show_heading(type) {
     }
 }
 
+
+function reducer(total, item) {
+    console.log(item);
+    if (item > 0) return total + item;
+    else return total;
+}
+
+
 function show_total_sustainability(type) {
     let desc = document.querySelector("#desc");
     let val = document.querySelector("#val");
     switch (type) {
         case 'economic':
             desc.textContent = "Total Economic Sustainability = ";
-            val.textContent = (economic_data['normalizedKPIValuesAchieved'].reduce((a, b) => a + b, 0)).toFixed(2) + " %";
+            val.textContent = (economic_data['normalizedKPIValuesAchieved'].reduce(reducer, 0)).toFixed(2) + " %";
             break;
         case 'environmental':
             desc.textContent = "Total Environmental Sustainability = ";
-            val.textContent = (environment_data['normalizedKPIValuesAchieved'].reduce((a, b) => a + b, 0)).toFixed(2) + " %";
+            val.textContent = (environment_data['normalizedKPIValuesAchieved'].reduce(reducer, 0)).toFixed(2) + " %";
             break;
         case 'social':
             desc.textContent = "Total social Sustainability = ";
-            val.textContent = (social_data['normalizedKPIValuesAchieved'].reduce((a, b) => a + b, 0)).toFixed(2) + " %";
+            val.textContent = (social_data['normalizedKPIValuesAchieved'].reduce(reducer, 0)).toFixed(2) + " %";
             break;
         case 'total':
             desc.textContent = "Accumulated Sustainability = ";
-            let temp = economic_data['normalizedKPIValuesAchieved'].reduce((a, b) => a + b, 0) + environment_data['normalizedKPIValuesAchieved'].reduce((a, b) => a + b, 0) + social_data['normalizedKPIValuesAchieved'].reduce((a, b) => a + b, 0);
+            let temp = economic_data['normalizedKPIValuesAchieved'].reduce(reducer, 0) + environment_data['normalizedKPIValuesAchieved'].reduce(reducer, 0) + social_data['normalizedKPIValuesAchieved'].reduce(reducer, 0);
             temp /= 300;
             temp *= 100;
             val.textContent = temp.toFixed(2) + " %";
